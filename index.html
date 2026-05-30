@@ -1139,49 +1139,55 @@ document.getElementById('startBtn').addEventListener('click',()=>{
 }
 })();
 
-// 💡 防錯機制：確保即使 init() 或同步出錯，按鈕點擊依然能強制執行
-function forceOpenCover() {
-  const startButton = document.getElementById('startBtn') || 
-                      document.getElementById('enter-btn') || 
-                      document.querySelector('.cv-btn');
+// ════════════════════════════════════════════
+// 💡 終極救場機制：最高優先權防錯綁定
+// ════════════════════════════════════════════
+function initCoverButton() {
+  const startButton = document.getElementById('startBtn');
   const coverPage = document.getElementById('cover');
 
   if (startButton && coverPage) {
-    // 綁定原生 onclick，確保最高優先權
+    // 採用原生 onclick，能直接覆蓋並無視其他潛在錯誤
     startButton.onclick = function(e) {
-      if(e) {
+      if (e) {
         e.preventDefault();
         e.stopPropagation();
       }
       coverPage.classList.add('hidden');
       coverPage.style.display = 'none'; 
-      console.log("已強制移除封面頁，進入主行程！");
+      console.log("🚀 已強制移除封面頁，進入主行程！");
     };
-    console.log("🚀 封面按鈕防錯綁定成功！");
+    console.log("✅ 封面按鈕防錯事件綁定成功");
   }
 }
 
-// 在 init 執行前，就先搶先綁定按鈕，防止被後面的錯誤卡死
+// 搶在所有大容量資料載入前，第一時間先讓按鈕可用
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", forceOpenCover);
+  document.addEventListener("DOMContentLoaded", initCoverButton);
 } else {
-  forceOpenCover();
+  initCoverButton();
 }
 
+// ════════════════════════════════════════════
+// INIT (加入安全保護防護罩)
+// ════════════════════════════════════════════
 async function init(){
   try {
-    await loadState();
-    renderDays();
-    renderTasks();
-    renderBadges();
-    updateProgress();
-    setInterval(updateProgress, 60000);
-    setInterval(pollSync, 8000);
-  } catch(err) {
-    console.error("初始化過程中發生錯誤，但按鈕功能不受影響:", err);
+    // 使用 try-catch 包裹，這樣即使 loadState 報錯，整個網頁也不會癱瘓
+    if (typeof loadState === "function") await loadState();
+    if (typeof renderDays === "function") renderDays();
+    if (typeof renderTasks === "function") renderTasks();
+    if (typeof renderBadges === "function") renderBadges();
+    if (typeof updateProgress === "function") updateProgress();
+    
+    if (typeof updateProgress === "function") setInterval(updateProgress, 60000);
+    if (typeof pollSync === "function") setInterval(pollSync, 8000);
+  } catch (err) {
+    console.error("初始化資料庫或畫面時發生錯誤，但按鈕功能已安全隔離不受影響:", err);
   }
 }
 
+// 執行初始化
 init();
 </script>
 
