@@ -1150,6 +1150,101 @@ async function init(){
 }
 
 init();
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+
+<script>
+// TODO: 前往 Firebase 官網 (https://console.firebase.google.com/) 建立免費專案
+// 並將下方的設定檔替換成你的專案金鑰
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.appspot.com",
+    messagingSenderId: "YOUR_ID",
+    appId: "YOUR_APP_ID"
+};
+
+// 初始化 Firebase
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// 💡 跨裝置同步邏輯範例：
+// 當管理員修改資料並儲存時，同步推送到雲端
+function syncDataToCloud(fieldId, newValue) {
+    database.ref('trip2026/' + fieldId).set({
+        value: newValue
+    });
+}
+
+// 旅伴的手機網頁會即時監聽這個資料庫，一有變動自動更新畫面
+database.ref('trip2026/').on('value', (snapshot) => {
+    const data = snapshot.val();
+    if(data) {
+        // 在這裡寫將雲端最新行程渲染到網頁上的 DOM 邏輯
+        console.log("偵測到旅伴更新了行程！最新資料：", data);
+    }
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // ---- 1. 修復封面頁點擊按鈕沒反應的問題 ----
+    // 請確認你封面頁的按鈕 class 有包含 'cv-btn'，或者有 id="enter-btn"
+    const enterBtn = document.querySelector('.cv-btn') || document.getElementById('enter-btn');
+    const cover = document.getElementById('cover');
+    
+    if (enterBtn && cover) {
+        enterBtn.addEventListener('click', function() {
+            cover.classList.add('hidden'); // 觸發 CSS 中的 transition 隱藏動畫
+            console.log("成功進入行程網頁！");
+        });
+    }
+
+    // ---- 2. 修復分頁導覽列 (TAB BAR) 切換邏輯 ----
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const panes = document.querySelectorAll('.pane');
+
+    tabBtns.forEach((btn, index) => {
+        btn.addEventListener('click', function() {
+            // 移除所有按鈕與面板的 active 狀態
+            tabBtns.forEach(b => b.classList.remove('active'));
+            panes.forEach(p => p.classList.remove('active'));
+            
+            // 啟用當前點擊的分頁
+            this.classList.add('active');
+            if(panes[index]) panes[index].classList.add('active');
+        });
+    });
+
+    // ---- 3. 修復管理員頁面：允許欄位編修並儲存在本機 ----
+    // 取得管理面板中所有的輸入框與儲存按鈕
+    const adminInputs = document.querySelectorAll('.pane input, .pane textarea');
+    const saveBtn = document.getElementById('save-admin-btn'); // 假設你的儲存按鈕有這個 ID
+
+    // 自動讀取上次編修的內容（避免重新整理後消失）
+    adminInputs.forEach((input, index) => {
+        // 確保欄位沒有被硬性鎖死
+        if(input.hasAttribute('disabled')) input.removeAttribute('disabled');
+        if(input.hasAttribute('readonly')) input.removeAttribute('readonly');
+
+        const savedValue = localStorage.getItem(`admin_field_${index}`);
+        if (savedValue) {
+            input.value = savedValue;
+        }
+    });
+
+    // 當點擊儲存按鈕時，將內容暫存至本機
+    if (saveBtn) {
+        saveBtn.addEventListener('click', function() {
+            adminInputs.forEach((input, index) => {
+                localStorage.setItem(`admin_field_${index}`, input.value);
+            });
+            alert('管理員設定已成功暫存在此裝置！');
+        });
+    }
+});
 </script>
 </body>
 </html>
