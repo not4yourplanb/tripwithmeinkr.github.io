@@ -17,10 +17,9 @@
 }
 body{background:var(--cream);color:var(--ink);font-family:'Noto Sans TC',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-/* ════ COVER (修正隱形層擋住按鈕問題) ════ */
+/* ════ COVER ════ */
 #cover{position:fixed;top:0;left:0;width:100vw;height:100vh;background:var(--cream);z-index:9999;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center;transition:opacity .4s ease,transform .4s ease}
 #cover.hidden{opacity:0;transform:scale(1.02);pointer-events:none}
-/* 關鍵排錯：加上 pointer-events: none 確保不擋到下方按鈕點擊 */
 .cv-deco{position:absolute;font-family:'Playfair Display',serif;font-size:24rem;font-style:italic;color:var(--cream2);z-index:1;top:45%;left:50%;transform:translate(-50%,-50%);user-select:none;pointer-events:none}
 #cover > *:not(.cv-deco){position:relative;z-index:10;animation:cvFadeUp .6s ease both}
 @keyframes cvFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -84,7 +83,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans TC',sans-se
 .dc-head{padding:.9rem 1rem;display:flex;align-items:center;gap:.9rem;cursor:pointer;user-select:none}
 .dc-num{width:36px;height:36px;background:var(--ink);color:var(--cream);border-radius:10px;display:flex;flex-direction:column;justify-content:center;align-items:center;flex-shrink:0}
 .dc-num .d{font-size:.45rem;font-family:'DM Mono',monospace;opacity:.7;line-height:1}
-.dc-num .n{font-family:'DM Mono',monospace;font-size:.95rem;font-weight:700;line-height:1.1;margin-top:1px}
+.dc-num .n{font-family:'DM Mono',monospace;font-size Club;font-size:0.95rem;font-weight:700;line-height:1.1;margin-top:1px}
 .dc-num.busan{background:var(--blue)}
 .dc-num.gold{background:var(--gold)}
 .dc-info{flex:1;min-width:0}
@@ -94,7 +93,6 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans TC',sans-se
 .dc-arr{font-size:.8rem;color:var(--ink3);transition:transform .3s ease;margin-left:auto}
 .dc-arr.open{transform:rotate(180deg);color:var(--ink)}
 
-/* 修正展開高度動畫與內部可見度 */
 .dc-body{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(0.4,0,0.2,1);padding:0 1rem}
 .dc-body.open{max-height:4000px;padding-bottom:1.2rem;overflow:visible}
 .day-summary{font-size:.72rem;line-height:1.5;color:var(--ink2);background:rgba(0,0,0,.03);padding:.6rem .8rem;border-radius:8px;margin-bottom:1rem;font-weight:300}
@@ -117,7 +115,7 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans TC',sans-se
 .sc-hd{display:flex;align-items:flex-start;gap:.3rem;margin-bottom:.3rem;position:relative}
 .nav-ic{text-decoration:none;font-size:.65rem;margin-top:1px;cursor:pointer}
 .sname{font-size:.78rem;font-weight:500;color:var(--ink);line-height:1.3;padding-right:2rem;flex:1}
-.sdur{font-family:'DM Mono',monospace;font-size:.55rem;color:var(--ink3);margin-top:2px;white-space:nowrap}
+.sdur{font-family:'DM Mono',monospace;font-size Club;font-size:.55rem;color:var(--ink3);margin-top:2px;white-space:nowrap}
 .sfeats{display:flex;flex-direction:column;gap:.25rem}
 .sf{font-size:.68rem;line-height:1.4;color:var(--ink2);font-weight:300;position:relative;padding-left:.6rem}
 .sf::before{content:'·';position:absolute;left:0;color:var(--ink3);font-weight:700}
@@ -135,8 +133,8 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans TC',sans-se
 .qs-top-ct{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--gold);font-weight:700;margin-left:auto}
 .badge-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;margin-bottom:1rem}
 .badge-itm{display:flex;flex-direction:column;align-items:center;background:var(--cream);padding:.5rem .2rem;border-radius:10px;text-align:center;position:relative;transition:all .3s}
-.badge-itm.locked{opacity:.4;filter:grayscale(100%)}
-.badge-itm.unlocked{box-shadow:0 2px 8px rgba(184,149,90,.15);border:1px solid rgba(184,149,90,.2)}
+.badge-itm.locked{opacity:.25;filter:grayscale(100%);border:1px dashed rgba(0,0,0,.08)}
+.badge-itm.unlocked{box-shadow:0 2px 8px rgba(184,149,90,.15);border:1px solid rgba(184,149,90,.2);opacity:1;filter:none}
 .badge-ico{font-size:1.1rem;margin-bottom:.15rem}
 .badge-nm{font-size:.48rem;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
 .badge-dt{font-family:'DM Mono',monospace;font-size:.4rem;color:var(--ink3);margin-top:1px}
@@ -174,8 +172,8 @@ body{background:var(--cream);color:var(--ink);font-family:'Noto Sans TC',sans-se
 /* INFO CARD */
 .info-card{background:var(--cream2);border-radius:14px;padding:1rem;margin-bottom:.75rem}
 .info-title{font-size:.75rem;font-weight:700;color:var(--ink);margin-bottom:.65rem;border-left:2px solid var(--blue);padding-left:.4rem;line-height:1.2}
-.info-row{display:flex;justify-content:space-between;font-size:.68rem;padding:.4rem 0;border-bottom:1px solid rgba(0,0,0,.03);line-height:1.4}
-.info-row:last-child{border-bottom:none}
+.info-card .info-row{display:flex;justify-content:space-between;font-size:.68rem;padding:.4rem 0;border-bottom:1px solid rgba(0,0,0,.03);line-height:1.4}
+.info-card .info-row:last-child{border-bottom:none}
 .info-lbl{color:var(--ink3);width:65px;flex-shrink:0}
 .info-v{color:var(--ink2);flex:1}
 .tel{color:var(--ink);text-decoration:underline;font-weight:500}
@@ -397,7 +395,7 @@ const DAYS = [
  summary:'城北洞和付岩洞是首爾最有文藝氣息的山腳社區，節奏慢、人少、古城牆就在旁邊。',
  lazy:[
   {t:'11:00',n:'城北洞獨立書店 + 咖啡',q:'성북동 카페 책방',dur:'2 hr',
-   f:['首爾版富錦街，保留老首爾氣息，人少安靜','書店、選物店與藝廊散落街道兩側','大片玻璃窗採光好，適合發呆'],
+   f:['首爾版富錦街，保留老首爾氣息，人少安靜','書店、選物店與藝廊散落街道走道兩側','大片玻璃窗採光好，適合發呆'],
    tags:[{l:'咖啡 ₩5,500',c:'c'},{l:'書視購買',c:'c'}]},
   {t:'14:00',n:'付岩洞午餐 + 散步',q:'부암동 맛집 점심',dur:'2 hr',
    f:['付岩洞是藝文人士聚集的山腳社區，坡道優美','沿山路往上走可看到首爾古城牆遺跡','小食堂多提供烤肉飯或定食，口感扎實'],
@@ -422,7 +420,7 @@ const DAYS = [
 {id:4,date:'06/02',wd:'TUE',g:'seoul',title:'美術館 & 西村胡同',area:'MMCA · 西村 · 景福宮',hr:'—',
  summary:'國立現代美術館和西村是截然不同的體驗——一個震撼，一個細膩。用一天感受首爾的兩種面向。',
  lazy:[
-  {t:'11:00',n:'西村胡同漫步',q:'서촌 골幕 카페',dur:'2 hr',
+  {t:'11:00',n:'西村胡同漫步',q:'서촌 골막 카페',dur:'2 hr',
    f:['首爾最有文化底蘊的社區，保留大量朝鮮時代窄巷','獨立書店、手工陶器、文具小物藏在巷子裏','跟著感覺走就能發現驚喜'],
    tags:[{l:'免費散步',c:'c'}]},
   {t:'14:00',n:'社稷壇公園 + 景福宮城牆',q:'사직공원 경복궁',dur:'1.5 hr',
@@ -519,41 +517,49 @@ const DAYS = [
    tags:[{l:'外圍免費 / 入宮 ₩1,000',c:'c'}]}
  ]},
 
-{id:8,date:'06/06',wd:'SAT',g:'seoul',title:'首爾慢日 → 出發釜山',area:'弘大 → 首爾站 → 釜山',hr:'—',
- summary:'今天是顯忠日（韓國國定假日），上午在首爾輕鬆逛，午後飛往釜山，開始旅程第二章。',
+{id:8,date:'06/06',wd:'SAT',g:'seoul',title:'顯忠日首爾慢活日',area:'弘大 · 延南洞 · 周邊探索',hr:'—',
+ summary:'今天是顯忠日（韓國國定假日），我們繼續留在首爾放慢腳步。上午避開人潮逛逛週末 Pop-up，下午在弘大周邊隨意散步補貨，享受惬意的假期氣氛。',
  lazy:[
-  {t:'全天',n:'弘大隨意逛，整理首爾回憶',q:'홍대 카페 주말',dur:'隨意',
-   f:['6/6 顯忠日，商店正常營業，城市較安靜','整理行李，確認帶去釜山的物品','不需帶全部行李，只帶 3–4 天份量']},
-  {t:'傍晚',n:'飛機 首爾 → 釜山',q:'서울역 비행기 부산',dur:'1+2 hr',
-   f:['首爾出發，約1小時抵達釜山','大P人隨心所欲好黑皮','抵達後搭地鐵往海雲台'],
-   tags:[{l:'班機 ₩??,???',c:'c'}],note:'提醒：FUNWAVE Check-in 從 16:00 開始。'}
+  {t:'全天',n:'弘大隨意逛，享受連假氛圍',q:'홍대 카페 주말',dur:'隨意',
+   f:['6/6 顯忠日，商店正常營業，住宅區相對安靜','找家沒去過的文青小店坐坐，不設限目的地','在大P人的節奏裏隨心所欲地黑皮'],
+   tags:[{l:'好好享受首爾假期',c:'t'}]},
+  {t:'傍晚',n:'延南洞居酒屋小酌或宵夜',q:'연남동 술집 맛집',dur:'1.5 hr',
+   f:['體驗首爾週末夜的熱鬧感','點幾樣紮實的原味串燒，不加含奶醬汁','為首爾第一階段的精采旅程乾杯']}
  ],
  active:[
-  {t:'09:00',n:'弘大週末 Pop-up 掃場',q:'홍대 팝업스토어 주말',dur:'2 hr',
-   f:['假日弘大有多個期間限定 pop-up','顯忠日人潮反而少，比一般週末輕鬆','Instagram #홍대팝업 查看本週活動']},
-  {t:'12:00',n:'整理行李 + 弘大午餐',q:'홍대 점심 맛집',dur:'2 hr',
-   f:['輕鬆吃一頓，然後回住所整理釜山行李','多餘行李寄放在 Hung Shu Ting','明天就是海雲台，開心出發']},
-  {t:'15:00',n:'首爾飛往釜山',q:'서울역 비행기 예매',dur:'1+2 hr',
-   f:['到達釜山大概是傍晚，可直接去海雲台看夕陽','可以稍作休息','抵達後搭地鐵 2 號線到해운대역，步行到 FUNWAVE'],
-   tags:[{l:'飛機 ₩??,???',c:'c'}]}
+  {t:'09:00',n:'弘大週末 Pop-up 搶先掃場',q:'홍대 팝업스토어 주말',dur:'2 hr',
+   f:['連假期間弘大有多個期間限定 pop-up 開跑','早點出門人潮較少，比平常週末更輕鬆好拍','可在 Instagram 搜尋 #홍대팝업 看看最新的活動']},
+  {t:'12:00',n:'合井在地食堂午餐',q:'합정 점심 맛집',dur:'1.5 hr',
+   f:['找一家不需要大排長龍的在地定食','點一份口感彈牙、分量紮實的烤肉或冷麵','吃飽後在附近生活雜貨店散散步'],
+   tags:[{l:'午餐 ₩11,000–15,000',c:'c'}]},
+  {t:'15:00',n:'望遠漢江公園傍晚散步',q:'망원한강공원',dur:'2 hr',
+   f:['不同於纛島，望遠漢江公園多了一份在地日常感','躺在草皮吹風，看著首爾人野餐','這裡是捕捉在地生活影片素材的絕佳地點'],
+   tags:[{l:'免費入場',c:'c'}]}
  ]},
 
-{id:9,date:'06/07',wd:'SUN',g:'busan',title:'海雲台 + FUNWAVE 入住',area:'해운대 · 海雲台傳統市場',hr:'—',
- summary:'歡迎來到釜山！今天是釜山第一天，FUNWAVE 入住，去海雲台感受大海。',
+{id:9,date:'06/07',wd:'SUN',g:'busan',title:'午後飛往釜山！擁抱海雲台',area:'首爾 → 金浦機場 → 釜山 → 海雲台',hr:'—',
+ summary:'上午在首爾進行最後的打包與打包，午後搭乘國內線飛往釜山！傍晚準時抵達海雲台 FUNWAVE 入住，在沙灘感受釜山的第一陣海風。',
  lazy:[
-  {t:'16:00',n:'FUNWAVE 入住',q:'FUNWAVE 게스트하우스 해운대',dur:'—',
-   f:['3F, 11-1, Jungdong 1-ro，距海雲台海灘步行約 15 分','入住後和釜山朋友聯絡，確認碰面時間','輕裝換好衣服，直接往海灘走'],
+  {t:'11:00',n:'首爾出發前往金浦機場',q:'김포국제공항',dur:'1 hr',
+   f:['整理出發釜山的行李，多餘的大件寄放在 Hung Shu Ting 處','搭乘地鐵前往金浦機場，午後班機出發','大P人隨心所欲準備前往海邊！']},
+  {t:'16:00',n:'抵達釜山並辦理 FUNWAVE 入住',q:'FUNWAVE 게스트하우스 해운대',dur:'—',
+   f:['3F, 11-1, Jungdong 1-ro，距海雲台海灘步行約 15 分','安頓好後和釜山朋友聯絡，輕裝往海灘出發'],
    tags:[{l:'+82 10-4498-2705',c:'t'}]},
-  {t:'18:00',n:'海雲台海灘傍晚散步',q:'해운대해수욕장',dur:'1.5 hr',
-   f:['六月海灘人潮不多，沙灘寬闊舒適','傍晚光線打在沙灘上，是絕佳的影片素材','帶便利商店飲料坐沙灘上，感受「到了」的感覺'],
-   tags:[{l:'免費',c:'c'}],note:'提醒：海灘附近治安良好；不需要特別計畫，就是感受。'}
+  {t:'18:00',n:'海雲台海灘黃金時刻散步',q:'해운대해수욕장 일몰',dur:'1.5 hr',
+   f:['六月傍晚的海灘沙灘寬闊舒適，海風非常舒服','帶瓶便利商店飲料坐在沙灘上，拍下抵達釜山的第一個鏡頭','不需要特別計畫，就是好好放空'],
+   tags:[{l:'免費觀海',c:'c'}]}
  ],
  active:[
-  {t:'入住後',n:'海雲台 黃金時刻拍攝',q:'해운대해수욕장 일몰',dur:'1.5 hr',
-   f:['傍晚光線是一天中最美的時刻，對著海的背影超上鏡','廣安大橋（광안대교）在遠方，可以一起入鏡','可和釜山朋友一起拍，或請路人幫忙'],
-   tags:[{l:'免費',c:'c'}]},
-  {t:'19:30',n:'해운대 전통시장 晚餐',q:'해운대전통시장 야식',dur:'1 hr',
-   f:['韓式炸雞、辣炒年糕、烤串，比海灘邊餐廳便宜許多','市場夜晚人氣旺，在地人也在這裏吃','炸年糕（튀김 떡볶이）比湯煮版本口感更紮實'],
+  {t:'10:00',n:'首爾住所最後收拾與早午餐',q:'강서구 아침 식당',dur:'1.5 hr',
+   f:['好好打包去釜山 3–4 天份量的輕便行李','在江西區住所附近吃頓道地的熱湯暖胃','準時前往金浦機場國內線線']},
+  {t:'13:30',n:'金浦國內線飛往釜山金海機場',q:'김포공항 국내선 부산',dur:'1 hr飛程',
+   f:['飛機起飛，記得坐在窗邊','關鍵任務：起飛或飛行途中，拍下窗外跨越漢江或離開首爾的畫面','展開南方的藍色海岸冒險！'],
+   tags:[{l:'班機 ₩??,???',c:'c'}]},
+  {t:'16:30',n:'機場輕軌+地鐵前往海雲台',q:'해운대역 지하철',dur:'1.2 hr',
+   f:['從金海機場搭乘輕軌至沙上站，轉乘2號線直達海雲台역','一邊坐車一邊觀察釜山與首爾截然不同的城市步調'],
+   tags:[{l:'車資 ₩2,000',c:'c'}]},
+  {t:'19:30',n:'海雲台傳統市場吃晚餐',q:'해운대전통시장 야식',dur:'1 hr',
+   f:['傳統市場的夜晚生機勃勃，炸雞、烤串任你選','挑選炸年糕（튀김 떡볶이），口感比湯煮的更紮實有嚼勁'],
    tags:[{l:'晚餐 ₩10,000–15,000',c:'c'}]}
  ]},
 
@@ -602,12 +608,12 @@ const DAYS = [
   {t:'14:00',n:'달맞이고개 月見嶺展望台',q:'달맞이고개 전망대',dur:'1.5 hr',
    f:['海雲台背後的山嶺，可俯瞰整個海雲台海灘全景','被評為釜山最美的海岸風景','山路兩側有咖啡館，走累了就進去休息'],
    tags:[{l:'免費',c:'c'}]},
-  {t:'18:00',n:'海雲台 釜山告別晚餐',q:'해운대 야외 레스토랑',dur:'2 hr',
+  {t:'18:00',n:'海雲台 釜山告別晚餐',q:'해운대 야외 レス卜ラン',dur:'2 hr',
    f:['在海雲台找一家戶外餐廳，和釜山朋友道別','點막걸리米酒，比啤酒更有韓式氛圍','好好拍下這一頓，是釜山行程的句號'],
    tags:[{l:'晚餐 ₩20,000–35,000',c:'c'}]}
  ]},
 
-{id:12,date:'06/10',wd:'WED',g:'busan',title:'告別釜山，回首爾',area:'해운대 → 부산역 → 弘大',hr:'—',
+{id:12,date:'06/10',wd:'WED',g:'busan',title:'告別釜山，回首爾',area:'해운台 → 부산역 → 弘大',hr:'—',
  summary:'退房前最後感受釜山的海風，然後搭 KTX 回首爾，開始旅程最後一章。',
  lazy:[
   {t:'早上',n:'海雲台最後早晨',q:'해운대해수욕장',dur:'1 hr',
@@ -627,7 +633,7 @@ const DAYS = [
    f:['回到 Hung Shu Ting 安頓','安頓好後可在弘大隨意逛','若還有力氣，可去망원한강공원漢江邊走走']}
  ]},
 
-{id:13,date:'06/11',wd:'THU',g:'hongdae',title:'昌德宮 + 仁寺洞',area:'창덕궁 · 북촌 · 인사동',hr:'—',
+{id:13,date:'06/11',wd:'THU',g:'hongdae',title:'昌德宮 + 仁寺洞',area:'창덕궁 · 北村 · 인사동',hr:'—',
  summary:'昌德宮是保存最完整的朝鮮王朝宮殿，北村是最上鏡的韓屋街道，仁寺洞是最好買的工藝品集散地。',
  lazy:[
   {t:'11:00',n:'昌德宮散步',q:'창덕궁 비원',dur:'2 hr',
@@ -698,9 +704,9 @@ const TASKS = [
   tip:'古著店多在中午才開；備現金 ₩30,000–50,000，多問多比較。找到後就帶著它走完今天剩下的行程。',tipIco:'👗'},
  {id:'tk2',scroll:'📜',title:'在東廟市場找到一件 ₩10,000 以下的寶物',day:'06/05',sortD:7,
   desc:'東廟跳蚤市場是古著界的聖地，早到攤位剛擺好。目標是找到一件 ₩10,000 以下的東西，然後和攤主聊個天。',
-  tip:'準備現金；不管買到什麼，重點是說話的那一刻。',tipIco:'🛍'},
- {id:'tk3',scroll:'📜',title:'搭飛機出發釜山，拍下窗外第一個漢江',day:'06/06',sortD:8,
-  desc:'飛機從首爾站出發，途中會跨越漢江。有機會的話，拍下窗外穿越城市的畫面。這是旅程進入第二章的儀式感。',
+  tip:'說「깎아주세요（便宜一點）」；準備現金；不管買到什麼，重點是說話的那一刻。',tipIco:'🛍'},
+ {id:'tk3',scroll:'📜',title:'搭飛機出發釜山，拍下窗外第一個漢江',day:'06/07',sortD:8,
+  desc:'午後從首爾起飛前往釜山，在飛機離地或航程中，有機會的話，拍下窗外穿越城市與漢江的畫面。這是旅程進入第二章的儀式感。',
   tip:'Bon voyage!',tipIco:'✈️'},
  {id:'tk4',scroll:'📜',title:'在甘川文化村迷路 30 分鐘',day:'06/08',sortD:10,
   desc:'拿到地圖後把它收起來，在甘川的彩色小巷裏靠著感覺走，不看地圖不開導航，讓自己真正地迷路 30 分鐘。',
@@ -733,7 +739,7 @@ const BADGES = [
  {id:'b5',ico:'🏅',nm:'傳說旅者',need:10,tasks:['tk1','tk2','tk3','tk4','tk5','tk6','tk7','tk8','tk9','tk10']},
 ];
 
-const PRAISE = ['妳好讚！！','Nice ✨','超厲害！','完美！','YES！','好開心！','做到了！','是誰這麼棒呀！'];
+const PRAISE = ['妳好棒！！','Nice ✨','超厲害！','完美！','YES！','好開心！','做到了！','是誰這麼棒呀！'];
 
 // ════════════════════════════════════════════
 // STATE + LOCAL/REMOTE INTEGRATION
@@ -752,7 +758,6 @@ async function loadState(){
       const l = localStorage.getItem(STORE_KEY);
       if(l) state = JSON.parse(l);
     }
-    // 異步載入後立即做一次校正檢查，防範異步延遲狀態不同步問題
     checkBadges(true);
   }catch(e){ console.log("讀取進度緩衝中..."); }
 }
@@ -780,7 +785,6 @@ async function pollSync(){
       const remote = JSON.parse(r.value);
       let changed = false;
       
-      // 雙向校對任務
       Object.keys(remote.tasksDone||{}).forEach(k=>{
         if(!state.tasksDone[k]){state.tasksDone[k]=remote.tasksDone[k];changed=true;}
       });
@@ -789,7 +793,7 @@ async function pollSync(){
       });
       
       if(changed){ 
-        checkBadges(true); // 觸發即時校正判定與徽章頒發收回
+        checkBadges(true);
         renderTasks(); 
         renderBadges(); 
         showToast('同步成功！進度更新囉 ✨'); 
@@ -972,20 +976,17 @@ function renderTasks(){
 function completeTask(e,id,btn){
   e.stopPropagation();
   if(state.tasksDone[id]){
-    // 變回未完成狀態
     delete state.tasksDone[id];
     btn.classList.remove('done');
     btn.innerHTML=`<span class="tk-chk"></span><span>標記完成，領取徽章</span>`;
     btn.closest('.tk').classList.remove('tk-done');
     const p=btn.nextElementSibling; if(p&&p.classList.contains('praise')) p.remove();
     
-    // 關鍵修正：任務取消後，強制重新計算徽章判定（允許扣除/收回未達標徽章）
     checkBadges(true);
     saveState();
     return;
   }
   
-  // 標記完成
   const praise=PRAISE[Math.floor(Math.random()*PRAISE.length)];
   state.tasksDone[id]={date:new Date().toISOString(),praise};
   btn.classList.add('done');
@@ -1000,7 +1001,7 @@ function completeTask(e,id,btn){
 }
 
 // ════════════════════════════════════════════
-// BADGES CONTROLLERS (核心校正邏輯：動態收回徽章)
+// BADGES CONTROLLERS
 // ════════════════════════════════════════════
 function checkBadge(b,doneList){
   if(b.id==='b5') return doneList.length >= b.need;
@@ -1015,13 +1016,11 @@ function checkBadges(forceRecheckAll = false){
     const meetsCriteria = checkBadge(b, done);
     
     if(meetsCriteria) {
-      // 達標且原本沒解鎖，則頒發解鎖
       if(!state.badgesUnlocked[b.id]){
         state.badgesUnlocked[b.id] = new Date().toISOString();
         setTimeout(()=>popBadge(b.id), 200);
       }
     } else {
-      // 關鍵需求：未達標但原本存在解鎖紀錄，則予以收回
       if(state.badgesUnlocked[b.id]){
         delete state.badgesUnlocked[b.id];
       }
@@ -1038,7 +1037,6 @@ function renderBadges(){
   grid.innerHTML='';
   
   BADGES.forEach(b=>{
-    // 嚴格依據當前狀態判定渲染
     const unlocked = !!state.badgesUnlocked[b.id];
     const el=document.createElement('div');
     el.className='badge-itm'+(unlocked?' unlocked':' locked');
@@ -1145,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
   await loadState();
   renderTasks();
-  checkBadges(true); // 初始同步校正
+  checkBadges(true);
 
   setInterval(updateProgress, 60000);
   setInterval(pollSync, 8000);
