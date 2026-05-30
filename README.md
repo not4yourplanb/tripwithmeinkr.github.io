@@ -1,1 +1,0 @@
-# tripwithmeinkr.github.io
