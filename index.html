@@ -1153,18 +1153,41 @@ init();
 <script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  // 綁定封面頁進入按鈕的點擊事件
-  const startButton = document.getElementById('startBtn');
-  const coverPage = document.getElementById('cover');
+// 使用最高層級的防錯機制，確保即使其他地方報錯，點擊功能也能強制執行
+(function() {
+    function initCoverButton() {
+        // 同時抓取所有可能的 ID 或 Class，確保百分之百綁定成功
+        const startButton = document.getElementById('startBtn') || 
+                            document.getElementById('enter-btn') || 
+                            document.querySelector('.cv-btn');
+                            
+        const coverPage = document.getElementById('cover');
 
-  if (startButton && coverPage) {
-    startButton.addEventListener('click', function() {
-      coverPage.classList.add('hidden');
-      console.log("已成功移除封面頁");
-    });
-  }
-});
+        if (startButton && coverPage) {
+            // 移除舊的監聽，重新綁定，防止重複觸發
+            startButton.onclick = function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // 強制讓封面頁消失的兩種保險寫法
+                coverPage.classList.add('hidden');
+                coverPage.style.display = 'none'; 
+                
+                console.log("已強制移除封面頁，進入主行程！");
+            };
+            console.log("🚀 封面按鈕事件綁定成功！");
+        } else {
+            console.error("❌ 找不到按鈕或封面元件，請檢查 HTML 標籤的 ID 是否正確。");
+        }
+    }
+
+    // 確保在各種載入狀態下都能執行
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initCoverButton);
+    } else {
+        initCoverButton();
+    }
+})();
 </script>
 
 </body>
