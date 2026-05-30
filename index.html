@@ -1127,7 +1127,7 @@ document.getElementById('startBtn').addEventListener('click',()=>{
 });
 
 // Cover floating stars
-(function(){
+{
   const c=document.getElementById('cvStars');
   const cols=['#b8955a','#8a7a9a','#7a9478','#b87878','#5b82a0','#c4a882'];
   for(let i=0;i<18;i++){
@@ -1136,58 +1136,53 @@ document.getElementById('startBtn').addEventListener('click',()=>{
     d.className='cv-star';
     d.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${60+Math.random()*40}%;background:${cols[i%cols.length]};animation-duration:${3+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
     c.appendChild(d);
-  }
+}
 })();
 
+// 💡 防錯機制：確保即使 init() 或同步出錯，按鈕點擊依然能強制執行
+function forceOpenCover() {
+  const startButton = document.getElementById('startBtn') || 
+                      document.getElementById('enter-btn') || 
+                      document.querySelector('.cv-btn');
+  const coverPage = document.getElementById('cover');
+
+  if (startButton && coverPage) {
+    // 綁定原生 onclick，確保最高優先權
+    startButton.onclick = function(e) {
+      if(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      coverPage.classList.add('hidden');
+      coverPage.style.display = 'none'; 
+      console.log("已強制移除封面頁，進入主行程！");
+    };
+    console.log("🚀 封面按鈕防錯綁定成功！");
+  }
+}
+
+// 在 init 執行前，就先搶先綁定按鈕，防止被後面的錯誤卡死
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", forceOpenCover);
+} else {
+  forceOpenCover();
+}
+
 async function init(){
-  await loadState();
-  renderDays();
-  renderTasks();
-  renderBadges();
-  updateProgress();
-  setInterval(updateProgress, 60000);
-  setInterval(pollSync, 8000);
+  try {
+    await loadState();
+    renderDays();
+    renderTasks();
+    renderBadges();
+    updateProgress();
+    setInterval(updateProgress, 60000);
+    setInterval(pollSync, 8000);
+  } catch(err) {
+    console.error("初始化過程中發生錯誤，但按鈕功能不受影響:", err);
+  }
 }
 
 init();
-<script>
-
-<script>
-// 使用最高層級的防錯機制，確保即使其他地方報錯，點擊功能也能強制執行
-(function() {
-    function initCoverButton() {
-        // 同時抓取所有可能的 ID 或 Class，確保百分之百綁定成功
-        const startButton = document.getElementById('startBtn') || 
-                            document.getElementById('enter-btn') || 
-                            document.querySelector('.cv-btn');
-                            
-        const coverPage = document.getElementById('cover');
-
-        if (startButton && coverPage) {
-            // 移除舊的監聽，重新綁定，防止重複觸發
-            startButton.onclick = function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // 強制讓封面頁消失的兩種保險寫法
-                coverPage.classList.add('hidden');
-                coverPage.style.display = 'none'; 
-                
-                console.log("已強制移除封面頁，進入主行程！");
-            };
-            console.log("🚀 封面按鈕事件綁定成功！");
-        } else {
-            console.error("❌ 找不到按鈕或封面元件，請檢查 HTML 標籤的 ID 是否正確。");
-        }
-    }
-
-    // 確保在各種載入狀態下都能執行
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", initCoverButton);
-    } else {
-        initCoverButton();
-    }
-})();
 </script>
 
 </body>
