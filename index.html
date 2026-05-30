@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Trip to South Korea 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --cream:#faf8f3;--cream2:#f3f0e8;--ink:#1a1714;--ink2:#3d3830;--ink3:#7a7266;
+  --blue:#5b82a0;--blue-l:#d4e4ef;--blue-d:#2d5470;
+  --gold:#b8955a;--gold-l:#f0e4cc;--gold-d:#8a6a30;
+  --sage:#7a9478;--sage-l:#d8e8d6;
+  --rose:#b87878;--rose-l:#f0dcdc;
+  --line:rgba(26,23,20,.1);--liner:rgba(26,23,20,.18);
+  --r:12px;--shadow:0 2px 20px rgba(26,23,20,.07);
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--cream);color:var(--ink);overscroll-behavior:none}
+
+/* ════════════ COVER ════════════ */
+#cover{
+  position:fixed;inset:0;z-index:200;
+  background:linear-gradient(145deg,#f0ece4 0%,#e8e2d8 40%,#ddd7cc 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:2rem 2.5rem;
+  transition:opacity .8s ease,transform .8s ease;
+}
+#cover.hidden{opacity:0;pointer-events:none;transform:scale(1.04)}
+.cv-tag{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.3rem;color:rgba(60,50,40,.35);margin-bottom:2rem;text-transform:uppercase}
+.cv-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,10vw,4rem);color:var(--ink);line-height:1.05;text-align:center;margin-bottom:.5rem}
+.cv-title em{font-style:italic;color:#8a6a50;display:block}
+.cv-sub{font-size:.78rem;color:rgba(60,50,40,.45);letter-spacing:.12rem;text-align:center;margin-bottom:2.5rem}
+.cv-dates{display:flex;align-items:center;gap:1.2rem;margin-bottom:2.5rem}
+.cv-date{text-align:center}
+.cv-date-l{font-size:.6rem;letter-spacing:.18rem;color:rgba(60,50,40,.38);margin-bottom:.2rem;text-transform:uppercase}
+.cv-date-v{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ink)}
+.cv-dash{width:30px;height:1px;background:rgba(60,50,40,.18)}
+.cv-mission{
+  background:rgba(255,255,255,.55);border:1px solid rgba(60,50,40,.12);border-radius:14px;
+  padding:1rem 1.4rem;max-width:300px;text-align:center;margin-bottom:2.5rem;
+  backdrop-filter:blur(4px);
+}
+.cv-mission-l{font-size:.58rem;letter-spacing:.22rem;color:rgba(60,50,40,.3);margin-bottom:.5rem;text-transform:uppercase}
+.cv-mission-txt{font-size:.8rem;color:var(--ink2);line-height:1.7;font-style:italic}
+.cv-btn{
+  padding:.9rem 2.5rem;border:1.5px solid rgba(60,50,40,.3);border-radius:50px;
+  background:var(--ink);color:#f5f0e8;font-family:'Noto Sans TC',sans-serif;font-size:.85rem;
+  letter-spacing:.15rem;cursor:pointer;transition:all .25s;
+}
+.cv-btn:hover{background:var(--ink2);border-color:var(--ink)}
+.cv-btn:active{transform:scale(.96)}
+.cv-deco{position:absolute;font-family:'Playfair Display',serif;font-size:min(55vw,20rem);
+  color:rgba(60,50,40,.04);right:-5%;bottom:-5%;line-height:.85;user-select:none;pointer-events:none}
+
+/* cover entry animation */
+@keyframes cvFadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+#cover > *:not(.cv-deco){animation:cvFadeUp .7s ease both}
+#cover .cv-tag{animation-delay:.1s}
+#cover .cv-title{animation-delay:.2s}
+#cover .cv-sub{animation-delay:.28s}
+#cover .cv-dates{animation-delay:.36s}
+#cover .cv-mission{animation-delay:.44s}
+#cover .cv-btn{animation-delay:.52s}
+/* floating sparkles on cover */
+.cv-stars{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.cv-star{position:absolute;border-radius:50%;animation:starFloat linear infinite}
+@keyframes starFloat{0%{transform:translateY(0) scale(1);opacity:.5}50%{opacity:.9}100%{transform:translateY(-60px) scale(.5);opacity:0}}
+#app{position:fixed;inset:0;display:flex;flex-direction:column}
+
+/* ════════════ HEADER ════════════ */
+.app-header{
+  background:var(--ink);padding:1rem 1.2rem .9rem;flex-shrink:0;
+  position:relative;overflow:hidden;
+}
+.app-header::after{content:'🇰🇷';position:absolute;right:-.5rem;top:50%;transform:translateY(-50%);font-size:3.5rem;opacity:.07}
+.ah-top{display:flex;align-items:center;justify-content:space-between}
+.ah-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff;font-weight:400;line-height:1.2}
+.ah-title em{font-style:italic;color:var(--gold)}
+.ah-sub{font-size:.6rem;color:rgba(255,255,255,.35);font-family:'DM Mono',monospace;margin-top:.15rem}
+.sync-pill{display:flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:.28rem .7rem;cursor:pointer}
+.sync-dot{width:5px;height:5px;border-radius:50%;background:#7fba7f;animation:syncpulse 2.5s infinite}
+@keyframes syncpulse{0%,100%{opacity:1}50%{opacity:.3}}
+.sync-txt{font-size:.58rem;color:rgba(255,255,255,.45);font-family:'DM Mono',monospace}
+/* progress */
+.prog-bar{margin-top:.75rem}
+.prog-meta{display:flex;justify-content:space-between;font-size:.58rem;color:rgba(255,255,255,.3);margin-bottom:.35rem;font-family:'DM Mono',monospace}
+.prog-track{height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;margin-bottom:.3rem}
+.prog-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--gold));transition:width .8s ease}
+.prog-dots{display:flex;gap:2px}
+.prog-dot{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.07);transition:background .4s}
+.prog-dot.done{background:var(--blue)}
+.prog-dot.today{background:var(--gold)}
+
+/* ════════════ TAB BAR ════════════ */
+.tab-nav{display:flex;background:var(--cream2);border-bottom:1px solid var(--line);flex-shrink:0}
+.tab-btn{flex:1;padding:.75rem .3rem;background:none;border:none;border-bottom:2px solid transparent;
+  font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.08rem;color:var(--ink3);cursor:pointer;transition:all .2s}
+.tab-btn.active{color:var(--ink);border-bottom-color:var(--blue-d);font-weight:400}
+
+/* ════════════ SCROLL CONTENT ════════════ */
+.tab-content{flex:1;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.pane{display:none;padding:.9rem .85rem 5rem}
+.pane.active{display:block}
+
+/* ════════════ ITIN FILTERS ════════════ */
+.filter-row{display:flex;gap:.4rem;overflow-x:auto;padding-bottom:.4rem;margin-bottom:.8rem;scrollbar-width:none}
+.filter-row::-webkit-scrollbar{display:none}
+.fc{flex-shrink:0;padding:.32rem .8rem;border-radius:20px;border:1px solid var(--liner);
+  background:rgba(255,255,255,.7);font-size:.67rem;color:var(--ink2);cursor:pointer;
+  white-space:nowrap;transition:all .2s;font-family:'DM Mono',monospace}
+.fc.on{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* ════════════ DAY CARDS ════════════ */
+.day-list{display:flex;flex-direction:column;gap:.65rem}
+.dc{background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:var(--r);
+  overflow:hidden;box-shadow:var(--shadow)}
+.dc-head{display:flex;align-items:center;gap:.75rem;padding:.8rem .9rem;cursor:pointer;user-select:none}
+.dc-num{width:36px;height:36px;border-radius:9px;background:var(--ink);display:flex;
+  flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.dc-num .d{font-size:.45rem;color:rgba(255,255,255,.4);line-height:1;font-family:'DM Mono',monospace}
+.dc-num .n{font-family:'Playfair Display',serif;font-size:1.05rem;color:#fff;line-height:1}
+.dc-num.busan{background:var(--blue-d)}
+.dc-num.gold{background:var(--gold-d)}
+.dc-info{flex:1;min-width:0}
+.dc-date{font-size:.6rem;color:var(--ink3);font-family:'DM Mono',monospace}
+.dc-title{font-size:.85rem;font-weight:500;color:var(--ink);line-height:1.3}
+.dc-area{font-size:.62rem;color:var(--blue-d);margin-top:.06rem}
+.dc-arr{font-size:.85rem;color:var(--ink3);transition:transform .28s;flex-shrink:0}
+.dc-arr.open{transform:rotate(180deg)}
+.dc-body{display:none;border-top:1px solid var(--line);padding:.85rem .9rem}
+.dc-body.open{display:block}
+/* day summary strip */
+.day-summary{font-size:.68rem;color:var(--ink3);background:var(--cream2);border-radius:7px;
+  padding:.4rem .6rem;margin-bottom:.75rem;line-height:1.6;border-left:2px solid var(--blue-l)}
+/* mode toggle */
+.mode-toggle{display:flex;background:var(--cream2);border-radius:8px;padding:3px;margin-bottom:.8rem;gap:2px}
+.mb{flex:1;padding:.38rem;border:none;border-radius:6px;background:none;
+  font-size:.68rem;font-family:'Noto Sans TC',sans-serif;color:var(--ink3);cursor:pointer;transition:all .2s;text-align:center}
+.mb.on{background:#fff;color:var(--ink);font-weight:500;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+
+/* ════════════ STOPS ════════════ */
+.stops{display:flex;flex-direction:column}
+.stops.h{display:none}
+.stop{display:flex;gap:.6rem;align-items:flex-start;margin-bottom:.5rem}
+.stop-l{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:40px}
+.stop-t{font-size:.58rem;color:var(--ink3);text-align:center;line-height:1.25;width:100%;font-family:'DM Mono',monospace}
+.stop-dot{width:6px;height:6px;border-radius:50%;background:var(--blue);border:2px solid var(--cream);box-shadow:0 0 0 1px var(--blue);margin-top:3px;flex-shrink:0}
+.stop-line{width:1px;flex:1;background:var(--blue-l);min-height:14px;margin-top:2px}
+.stop-r{flex:1}
+.sc{background:var(--cream2);border-radius:9px;padding:.58rem .7rem}
+.sc-hd{display:flex;align-items:flex-start;gap:.4rem;margin-bottom:.28rem}
+.nav-ic{width:20px;height:20px;border-radius:5px;background:var(--blue-d);display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;text-decoration:none;font-size:.65rem;transition:opacity .15s}
+.nav-ic:active{opacity:.7}
+.sname{font-size:.82rem;font-weight:500;color:var(--ink);flex:1;line-height:1.3}
+.sdur{font-size:.58rem;color:var(--ink3);white-space:nowrap;flex-shrink:0;
+  background:rgba(26,23,20,.07);padding:.12rem .38rem;border-radius:4px;margin-top:1px;font-family:'DM Mono',monospace}
+.sfeats{display:flex;flex-direction:column;gap:.15rem;margin:.22rem 0}
+.sf{font-size:.7rem;color:var(--ink2);line-height:1.45;padding-left:.5rem;position:relative}
+.sf::before{content:'';position:absolute;left:0;top:.52em;width:3px;height:3px;border-radius:50%;background:var(--blue)}
+.stags{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.35rem}
+.stag{font-size:.58rem;padding:.12rem .4rem;border-radius:4px}
+.stag.c{background:rgba(184,149,90,.14);color:var(--gold-d);border:1px solid rgba(184,149,90,.22)}
+.stag.w{background:rgba(184,120,120,.14);color:#8a3030;border:1px solid rgba(184,120,120,.2);font-weight:500}
+.stag.t{background:rgba(91,130,160,.1);color:var(--blue-d);border:1px solid rgba(91,130,160,.18)}
+.stag.k{background:rgba(122,148,120,.14);color:#3a5a38;border:1px solid rgba(122,148,120,.2)}
+.snote{margin-top:.38rem;font-size:.68rem;color:var(--ink2);background:rgba(91,130,160,.07);
+  border-left:2px solid var(--blue-l);padding:.32rem .48rem;border-radius:0 6px 6px 0;line-height:1.55}
+
+/* ════════════ Qs PAGE ════════════ */
+.qs-top{background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:var(--r);padding:.9rem;margin-bottom:.8rem;box-shadow:var(--shadow)}
+.qs-top-title{font-size:.68rem;font-weight:500;color:var(--ink);margin-bottom:.6rem;display:flex;justify-content:space-between;align-items:center}
+.qs-top-ct{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--ink3)}
+.badge-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;margin-bottom:.7rem}
+.badge-itm{display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.4rem .15rem;border-radius:9px;transition:all .3s}
+.badge-itm.locked{opacity:.3;filter:grayscale(1)}
+.badge-itm.unlocked{background:var(--gold-l)}
+.badge-ico{font-size:1.3rem;line-height:1}
+.badge-nm{font-size:.56rem;color:var(--ink2);text-align:center;line-height:1.25}
+.badge-dt{font-size:.52rem;color:var(--ink3);text-align:center}
+/* next badge bar */
+.nb-row{margin-top:.15rem}
+.nb-meta{display:flex;justify-content:space-between;font-size:.6rem;color:var(--ink3);margin-bottom:.28rem;font-family:'DM Mono',monospace}
+.nb-tr{height:4px;background:var(--cream2);border-radius:2px;overflow:hidden}
+.nb-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--gold));transition:width .5s ease}
+/* task cards */
+.task-list{display:flex;flex-direction:column;gap:.55rem;margin-top:.8rem}
+.tk{background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.tk.tk-done{opacity:.7}
+.tk-hd{display:flex;align-items:center;gap:.6rem;padding:.75rem .9rem;cursor:pointer;user-select:none;position:relative}
+.tk-scroll{font-size:.95rem;flex-shrink:0}
+.tk-meta{flex:1;min-width:0}
+.tk-title{font-size:.82rem;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tk-day{font-size:.58rem;color:var(--ink3);font-family:'DM Mono',monospace}
+.tk-arr{font-size:.78rem;color:var(--ink3);transition:transform .28s;flex-shrink:0}
+.tk-arr.open{transform:rotate(180deg)}
+.tk-bd{display:none;border-top:1px solid var(--line);padding:.8rem .9rem;position:relative;overflow:hidden}
+.tk-bd.open{display:block}
+.tk-desc{font-size:.74rem;color:var(--ink2);line-height:1.65;margin-bottom:.55rem}
+.tk-tip{display:flex;align-items:flex-start;gap:.4rem;font-size:.7rem;color:var(--blue-d);
+  background:rgba(91,130,160,.09);border-radius:7px;padding:.45rem .6rem;line-height:1.55;
+  border:1px solid rgba(91,130,160,.16);margin-bottom:.65rem}
+.tk-tip-ico{flex-shrink:0;margin-top:.05rem}
+.tk-cbtn{display:flex;align-items:center;gap:.45rem;padding:.48rem .75rem;border:1.5px solid var(--blue);
+  border-radius:7px;background:none;font-family:'Noto Sans TC',sans-serif;font-size:.73rem;
+  color:var(--blue-d);cursor:pointer;width:100%;transition:all .2s}
+.tk-cbtn.done{background:var(--blue-d);border-color:var(--blue-d);color:#fff}
+.tk-chk{width:15px;height:15px;border-radius:3px;border:1.5px solid currentColor;
+  display:flex;align-items:center;justify-content:center;font-size:.65rem;transition:all .15s}
+.praise{font-size:.8rem;font-weight:500;color:var(--gold-d);text-align:center;padding:.28rem;
+  animation:pf .4s ease}
+@keyframes pf{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
+
+/* ════════════ INFO PAGE ════════════ */
+.info-card{background:rgba(255,255,255,.85);border:1px solid var(--line);border-radius:var(--r);padding:.9rem;margin-bottom:.7rem;box-shadow:var(--shadow)}
+.info-title{font-size:.68rem;font-weight:500;color:var(--ink);margin-bottom:.55rem;font-family:'DM Mono',monospace;letter-spacing:.06rem}
+.info-row{display:flex;align-items:flex-start;gap:.4rem;padding:.28rem 0;border-bottom:1px solid var(--line);font-size:.74rem;color:var(--ink2);line-height:1.5}
+.info-row:last-child{border-bottom:none}
+.info-lbl{font-size:.58rem;color:var(--ink3);min-width:60px;flex-shrink:0;padding-top:.18rem;font-family:'DM Mono',monospace}
+.info-v{flex:1}
+.tel{color:var(--blue-d);font-weight:500;text-decoration:none}
+/* stay card */
+.stay-card{background:linear-gradient(135deg,var(--ink) 0%,#2a2520 100%);border-radius:var(--r);padding:.85rem .95rem;margin-bottom:0}
+.stay-lbl{font-size:.56rem;letter-spacing:.22rem;color:rgba(255,255,255,.28);margin-bottom:.5rem;font-family:'DM Mono',monospace;text-transform:uppercase}
+.stay-row{display:flex;gap:.6rem;padding:.42rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.stay-row:last-child{border-bottom:none}
+.stay-period{font-size:.62rem;color:rgba(255,255,255,.38);width:80px;flex-shrink:0;padding-top:.1rem;font-family:'DM Mono',monospace}
+.stay-nm{font-size:.78rem;color:#fff;font-weight:500;margin-bottom:.1rem}
+.stay-addr{font-size:.62rem;color:rgba(255,255,255,.4);line-height:1.4}
+.stay-tel{font-size:.62rem;color:var(--blue-l);margin-top:.15rem}
+a.stay-link{color:var(--gold-l);text-decoration:underline;text-decoration-color:rgba(184,149,90,.4)}
+
+/* ════════════ SPARKLES ════════════ */
+.spk{position:absolute;border-radius:50%;pointer-events:none;animation:spkfly .7s ease forwards}
+@keyframes spkfly{0%{opacity:1;transform:scale(1) translate(0,0)}100%{opacity:0;transform:scale(0) translate(var(--dx),var(--dy))}}
+@keyframes badgepop{0%{transform:scale(.4)}55%{transform:scale(1.18)}100%{transform:scale(1)}}
+.badge-pop{animation:badgepop .5s cubic-bezier(.17,.67,.3,1.2)}
+
+/* ════════════ SYNC TOAST ════════════ */
+.sync-toast{position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%);
+  background:var(--ink);color:rgba(255,255,255,.8);font-size:.65rem;padding:.4rem 1rem;
+  border-radius:20px;font-family:'DM Mono',monospace;z-index:300;
+  opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
+.sync-toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<div id="cover">
+  <div class="cv-stars" id="cvStars"></div>
+  <div class="cv-deco">L</div>
+  <div class="cv-tag">Trip with me</div>
+  <div class="cv-title">HERE WE GO!<em>South Korea</em></div>
+  <p class="cv-sub">當時就是挺突然ㄉ</p>
+  <div class="cv-dates">
+    <div class="cv-date">
+      <div class="cv-date-l">Start</div>
+      <div class="cv-date-v">05 / 30</div>
+    </div>
+    <div class="cv-dash"></div>
+    <div class="cv-date">
+      <div class="cv-date-l">End</div>
+      <div class="cv-date-v">06 / 13</div>
+    </div>
+  </div>
+  <div class="cv-mission">
+    <div class="cv-mission-l">Mission</div>
+    <div class="cv-mission-txt">「妳排什麼我就去什麼，<br>然後我就把它剪成影片」</div>
+  </div>
+  <button class="cv-btn" id="startBtn">開始冒險</button>
+</div>
+
+<!-- ════ APP ════ -->
+<div id="app">
+  <div class="app-header">
+    <div class="ah-top">
+      <div>
+        <div class="ah-title"><em>Trip to South Korea</em> 2026</div>
+        <div class="ah-sub">IT662 → IT663 · 05/30–06/13</div>
+      </div>
+      <div class="sync-pill" onclick="showSyncInfo()">
+        <div class="sync-dot" id="syncDot"></div>
+        <span class="sync-txt" id="syncTxt">同步中</span>
+      </div>
+    </div>
+    <div class="prog-bar">
+      <div class="prog-meta">
+        <span id="progLabel">行程進度</span>
+        <span id="progFrac" style="font-family:'DM Mono',monospace">—/15</span>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+      <div class="prog-dots" id="progDots"></div>
+    </div>
+  </div>
+
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('itin',this)">ITIN</button>
+    <button class="tab-btn" onclick="switchTab('qs',this)">Qs</button>
+    <button class="tab-btn" onclick="switchTab('info',this)">INFO</button>
+  </div>
+
+  <div class="tab-content">
+
+    <!-- ══ ITIN ══ -->
+    <div class="pane active" id="pane-itin">
+      <div class="filter-row">
+        <div class="fc on" onclick="filterDays('all',this)">總覽</div>
+        <div class="fc" onclick="filterDays('seoul',this)">05/30–06/06 首爾</div>
+        <div class="fc" onclick="filterDays('busan',this)">06/07–06/10 釜山</div>
+        <div class="fc" onclick="filterDays('hongdae',this)">06/11–06/13 弘大</div>
+      </div>
+      <div class="day-list" id="dayList"></div>
+    </div>
+
+    <!-- ══ Qs ══ -->
+    <div class="pane" id="pane-qs">
+      <div class="qs-top">
+        <div class="qs-top-title">
+          <span>成就徽章</span>
+          <span class="qs-top-ct" id="bdgCount">0 / 5 解鎖</span>
+        </div>
+        <div class="badge-grid" id="bdgGrid"></div>
+        <div class="nb-row">
+          <div class="nb-meta"><span id="nbName">下一個徽章</span><span id="nbProg">0/1</span></div>
+          <div class="nb-tr"><div class="nb-fill" id="nbFill" style="width:0%"></div></div>
+        </div>
+      </div>
+      <div class="task-list" id="taskList"></div>
+    </div>
+
+    <!-- ══ INFO ══ -->
+    <div class="pane" id="pane-info">
+      <div class="info-card">
+        <div class="info-title">緊急電話</div>
+        <div class="info-row"><span class="info-lbl">警察</span><span class="info-v"><a class="tel" href="tel:112">112</a></span></div>
+        <div class="info-row"><span class="info-lbl">救護 / 火災</span><span class="info-v"><a class="tel" href="tel:119">119</a></span></div>
+        <div class="info-row"><span class="info-lbl">旅遊諮詢</span><span class="info-v"><a class="tel" href="tel:1330">1330</a>（24hr，中英文）</span></div>
+        <div class="info-row"><span class="info-lbl">駐韓代表部</span><span class="info-v"><a class="tel" href="tel:+82-2-399-2767">+82-2-399-2767</a></span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-title">航班資訊</div>
+        <div class="info-row"><span class="info-lbl">去程</span><span class="info-v">IT662 · KHH 15:55 → GMP 19:45 · 05/30</span></div>
+        <div class="info-row"><span class="info-lbl">回程</span><span class="info-v">IT663 · GMP 20:35 → KHH 22:40 · 06/13</span></div>
+        <div class="info-row"><span class="info-lbl">虎航客服</span><span class="info-v"><a class="tel" href="tel:+886-2-2717-0000">+886-2-2717-0000</a></span></div>
+      </div>
+      <div class="info-card">
+        <div class="info-title">住宿資訊</div>
+        <div class="stay-card">
+          <div class="stay-lbl">Accommodation</div>
+          <div class="stay-row">
+            <span class="stay-period">05/30–06/06</span>
+            <div>
+              <div class="stay-nm">Hung Shu Ting 朋友家</div>
+              <div class="stay-addr">13, Gangseo-ro 10-gil, Gangseo-gu, Seoul 07781</div>
+              <div class="stay-tel"><a class="tel" href="tel:+82-10-5202-0455" style="color:var(--blue-l)">010-5202-0455</a></div>
+            </div>
+          </div>
+          <div class="stay-row">
+            <span class="stay-period">06/07</span>
+            <div>
+              <div class="stay-nm">FUNWAVE Guest House</div>
+              <div class="stay-addr">3F, 11-1, Jungdong 1-ro, Haeundae-gu, Busan</div>
+              <div class="stay-tel"><a class="tel" href="tel:+82-10-4498-2705" style="color:var(--blue-l)">+82 10-4498-2705</a> · Check-in 16:00</div>
+            </div>
+          </div>
+          <div class="stay-row">
+            <span class="stay-period">06/08–06/10</span>
+            <div>
+              <div class="stay-nm">Central Bay Hotel</div>
+              <div class="stay-addr">Haeundae-gu, Busan</div>
+              <div class="stay-tel"><a class="stay-link" href="http://www.centralbay.co.kr" target="_blank">www.centralbay.co.kr</a></div>
+            </div>
+          </div>
+          <div class="stay-row">
+            <span class="stay-period">06/11–06/13</span>
+            <div>
+              <div class="stay-nm">Hung Shu Ting 朋友家</div>
+              <div class="stay-addr">13, Gangseo-ro 10-gil, Gangseo-gu, Seoul 07781</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- tab-content -->
+</div><!-- app -->
+
+<div class="sync-toast" id="syncToast"></div>
+
+<script>
+// ════════════════════════════════════════════
+// DATA
+// ════════════════════════════════════════════
+const nm = url => `https://map.naver.com/v5/search/${encodeURIComponent(url)}`;
+
+const DAYS = [
+{id:1,date:'05/30',wd:'SAT',g:'seoul',title:'落地首爾，感受城市溫度',area:'金浦機場 → 江西區',hr:'2.5hr',
+ summary:'旅程第一天，最重要的事是平安。不需要任何計畫，就是ㄑㄧㄡˋ。',
+ lazy:[
+  {t:'15:55',n:'IT662 出發高雄，抵達金浦機場',q:'김포국제공항',dur:'抵達 19:45',
+   f:['抵達 19:45，於 1F 換 SIM 卡（KT 或 SKT）、購 T-money 交通卡','入境卡在飛機上先填好，加快通關','確認手機可上網後再離開機場'],
+   tags:[{l:'SIM ₩20,000–35,000',c:'c'},{l:'機場部分需現金',c:'w'}]},
+  {t:'20:30',n:'前往江西區住宿安頓',q:'강서구 숙소 지하철',dur:'—',
+   f:['地鐵 5號線直達住宿附近，約 30–40 分','放好行李和 Hung Shu Ting 打招呼','附近便利商店採購隔天早餐食材'],
+   tags:[{l:'地鐵 ₩1,450',c:'c'}]},
+  {t:'22:00',n:'江西區附近散步宵夜',q:'강서구 편의점 야식',dur:'隨意',
+   f:['熟悉住宿周邊環境，不需要規劃','GS25 / CU 的魚板串、炸雞是好選擇','今晚目標：吃飽睡好，明天才有力氣玩'],
+   note:'提醒：今天以安全抵達為主，別給自己太多壓力。'}
+ ],
+ active:[
+  {t:'19:45',n:'金浦機場入境全流程',q:'김포공항 1층 sim카드',dur:'45–60 min',
+   f:['入境→領行李→換 SIM→買 T-money 全在 1F 完成','SIM 卡直接問店員「台灣人，15天」讓對方推薦方案','確認手機可上網後才離開機場'],
+   tags:[{l:'SIM ₩25,000',c:'c'},{l:'T-money ₩3,000+儲值',c:'c'}]},
+  {t:'21:00',n:'入住 + 江西區在地晚餐',q:'강서구 맛집 닭갈비',dur:'1 hr',
+   f:['江西區是在地住宅區，餐廳真實不踩雷','找一家닭갈비或烤肉小食堂','說「크림 빼주세요」不要奶油'],
+   tags:[{l:'晚餐 ₩10,000–15,000',c:'c'}],
+   note:'提醒：第一天就吃到道地首爾在地食堂，是最好的開始。'}
+ ]},
+
+{id:2,date:'05/31',wd:'SUN',g:'seoul',title:'古著獵人天堂日',area:'弘大 · 延南洞 · 경의선숲길',hr:'—',
+ summary:'今天是第一個完整的首爾日，弘大和延南洞是最適合慢慢逛的區域，古著、咖啡、林蔭步道一次滿足。',
+ lazy:[
+  {t:'10:30',n:'延南洞咖啡館慢晨',q:'연남동 카페',dur:'1.5 hr',
+   f:['延南洞咖啡館多為獨立經營，空間個性不趕客','選黑咖啡或燕麥奶，乳糖不耐友善','找到一個窗邊位置，觀察路人也是旅遊的一部分'],
+   tags:[{l:'咖啡 ₩5,500–7,000',c:'c'}]},
+  {t:'13:00',n:'弘大古著街隨意掃',q:'홍대 빈티지 고착샵',dur:'2–3 hr',
+   f:['弘大有十幾間二手古著店密集分布，中性風格選擇多','每間風格不同，建議逐一進去逛，不要趕','今天掃到的第一件戰利品就是旅程的第一個記憶'],
+   tags:[{l:'古著 ₩10,000–50,000',c:'c'},{l:'多為現金或行動支付',c:'k'}]},
+  {t:'16:00',n:'경의선숲길 林蔭步道散步',q:'경의선숲길 연남동',dur:'1 hr',
+   f:['廢棄鐵路改建的線性公園，六月初繡球花初開','遮陰好，傍晚走最舒服，光線柔和','兩旁有小食攤，邊走邊吃'],
+   tags:[{l:'免費入場',c:'c'}]}
+ ],
+ active:[
+  {t:'09:30',n:'望遠市場早餐',q:'망원시장 아침',dur:'45 min',
+   f:['망원시장 是在地人買菜的市場，觀光客極少','早市有熱騰騰魚板湯、烤串、炸丸子，口感扎實','是首爾最真實的早晨樣貌'],
+   tags:[{l:'早餐 ₩3,000–6,000',c:'c'},{l:'現金為主',c:'k'}]},
+  {t:'11:00',n:'弘大→合井 古著巡禮',q:'홍대 합정 빈티지샵',dur:'3 hr',
+   f:['弘大往合井走，沿途古著店密度最高','합정역 周邊有私人小鋪，選品更個性','韓國棉被也可在合井一帶的生活雜貨店找到'],
+   tags:[{l:'古著 ₩15,000–80,000',c:'c'}]},
+  {t:'14:30',n:'合井 닭갈비 午餐',q:'합정 닭갈비 맛집',dur:'1 hr',
+   f:['辣炒雞肉，口感紮實彈牙，挑食者最安全的選擇','進門說「크림 없이 해주세요」不加奶油醬','配白飯份量足夠'],
+   tags:[{l:'닭갈비 ₩13,000',c:'c'},{l:'說：크림 빼주세요',c:'w'}],
+   note:'提醒：部分닭갈비店有奶油起司版，點餐時確認是原味（오리지널）款。'},
+  {t:'16:00',n:'경의선숲길 + 弘大壁畫巷',q:'경의선숲길 홍대 벽화',dur:'1.5 hr',
+   f:['步道傍晚光線最美，繡球花六月初陸續盛開','壁畫巷街頭塗鴉是很好的影片素材','走累了就找路邊咖啡廳坐，不需要趕'],
+   tags:[{l:'免費',c:'c'}]}
+ ]},
+
+{id:3,date:'06/01',wd:'MON',g:'seoul',title:'城北洞慢生活',area:'城北洞 · 付岩洞',hr:'—',
+ summary:'城北洞和付岩洞是首爾最有文藝氣息的山腳社區，節奏慢、人少、古城牆就在旁邊。',
+ lazy:[
+  {t:'11:00',n:'城北洞獨立書店 + 咖啡',q:'성북동 카페 책방',dur:'2 hr',
+   f:['首爾版富錦街，保留老首爾氣息，人少安靜','書店、選物店與藝廊散落街道兩側','大片玻璃窗採光好，適合發呆'],
+   tags:[{l:'咖啡 ₩5,500',c:'c'},{l:'書視購買',c:'c'}]},
+  {t:'14:00',n:'付岩洞午餐 + 散步',q:'부암동 맛집 점심',dur:'2 hr',
+   f:['付岩洞是藝文人士聚集的山腳社區，坡道優美','沿山路往上走可看到首爾古城牆遺跡','小食堂多提供烤肉飯或定食，口感扎實'],
+   tags:[{l:'午餐 ₩12,000–16,000',c:'c'}],
+   note:'提醒：付岩洞有點坡度，穿舒適的鞋。'}
+ ],
+ active:[
+  {t:'09:00',n:'北岳山城牆步道',q:'북악산성곽길 외국인',dur:'2.5 hr',
+   f:['沿朝鮮時代古城牆登山，俯瞰整個首爾盆地','清晨涼爽最適合走，遊客極少','需攜帶外國護照入場，免費進入'],
+   tags:[{l:'免費',c:'c'},{l:'需帶護照',c:'w'}]},
+  {t:'12:00',n:'付岩洞 烤肉定食午餐',q:'부암동 음식점 불고기',dur:'1 hr',
+   f:['登山後補充體力，選불고기或닭갈비定食','付岩洞餐廳品質穩定，不用擔心踩雷','份量充足，搭配小菜就是完整一餐'],
+   tags:[{l:'定食 ₩13,000–18,000',c:'c'}]},
+  {t:'14:00',n:'彰義門 + 付岩洞藝廊',q:'부암동 갤러리 창의문',dur:'1.5 hr',
+   f:['彰義門是朝鮮四小門之一，保存完好','周邊有私人小藝廊，展覽水準高且清靜','傍晚光線打在石門上最美'],
+   tags:[{l:'藝廊 ₩3,000–5,000',c:'c'}]},
+  {t:'16:30',n:'城北洞老咖啡館收尾',q:'성북동 카페',dur:'1 hr',
+   f:['老建築改建的咖啡館，老派迷人','適合在這裏整理今天的照片','窗外是山景，很適合安靜地坐著'],
+   tags:[{l:'咖啡 ₩6,000',c:'c'}]}
+ ]},
+
+{id:4,date:'06/02',wd:'TUE',g:'seoul',title:'美術館 & 西村胡同',area:'MMCA · 西村 · 景福宮',hr:'—',
+ summary:'國立現代美術館和西村是截然不同的體驗——一個震撼，一個細膩。用一天感受首爾的兩種面向。',
+ lazy:[
+  {t:'11:00',n:'西村胡同漫步',q:'서촌 골목 카페',dur:'2 hr',
+   f:['首爾最有文化底蘊的社區，保留大量朝鮮時代窄巷','獨立書店、手工陶器、文具小物藏在巷子裏','跟著感覺走就能發現驚喜'],
+   tags:[{l:'免費散步',c:'c'}]},
+  {t:'14:00',n:'社稷壇公園 + 景福宮城牆',q:'사직공원 경복궁',dur:'1.5 hr',
+   f:['公園免費，可看景福宮城牆和仁王山剪影','傍晚光線打在城牆上，有電影質感','人少安靜，適合發呆休息'],
+   tags:[{l:'免費',c:'c'}]}
+ ],
+ active:[
+  {t:'10:00',n:'MMCA 國立現代美術館首爾館',q:'국립현대미술관 서울관',dur:'2–3 hr',
+   f:['韓國最重要的當代美術館之一，建築本身值得細看','常設展免費，特展另收費；六月多有夏季策展','週一休館，其他日均開放'],
+   tags:[{l:'常設免費 / 特展 ₩4,000',c:'c'}]},
+  {t:'13:00',n:'景福宮周邊定食午餐',q:'경복궁 주변 한정식',dur:'1 hr',
+   f:['景福宮附近多家平價韓定食，不踩雷','選불고기定食，烤牛肉紮實不軟爛','附小菜多種，可自行搭配組合'],
+   tags:[{l:'定食 ₩13,000–16,000',c:'c'}]},
+  {t:'14:30',n:'西村胡同 + 小物掃貨',q:'서촌 골목 소품샵',dur:'2 hr',
+   f:['手工飾品、文具、陶器等各式小物聚集','比清潭洞親民，比弘大更安靜有質感','許多店家下午巡禮最合適'],
+   tags:[{l:'小物 ₩5,000–30,000',c:'c'}]},
+  {t:'17:00',name:'社稷壇公園夕陽',n:'社稷壇公園夕陽',q:'사직공원 일몰',dur:'1 hr',
+   f:['日落角度超好，景福宮城牆和山的剪影非常上鏡','少人且靜謐','六月日落約 19:50，不用趕'],
+   tags:[{l:'免費',c:'c'}],note:'提醒：天黑後周邊巷子稍暗，搭地鐵或 Kakao T 返回。'}
+ ]},
+
+{id:5,date:'06/03',wd:'WED',g:'seoul',title:'Leeum + 漢南洞設計日',area:'漢南洞 · Leeum · 南山',hr:'—',
+ summary:'漢南洞是首爾最有質感的街區，Leeum 是頂尖私立美術館，南山塔是最壯觀的首爾全景。',
+ lazy:[
+  {t:'12:00',n:'漢南洞選物店漫步',q:'한남동 셀렉샵 편집샵',dur:'2 hr',
+   f:['首爾最有質感的街區，低調精品與藝術選物並存','比弘大安靜許多，適合不想被人群打擾的日子','中性設計師品牌密集，價格比清潭洞親民'],
+   tags:[{l:'選購視個人',c:'c'}]},
+  {t:'15:00',n:'綠莎坪站附近咖啡館',q:'녹사평역 카페',dur:'1.5 hr',
+   f:['녹사평역 一帶有安靜的獨立咖啡館','多元文化餐廳，適合挑食者','傍晚坐窗邊看人來人往，是獨旅最享受的時刻'],
+   tags:[{l:'咖啡 ₩6,000',c:'c'}]}
+ ],
+ active:[
+  {t:'10:30',n:'Leeum Samsung 美術館',q:'리움미술관',dur:'2.5 hr',
+   f:['韓國頂尖私立美術館，古代文物與當代藝術的絕妙組合','Mario Botta 設計的建築本身就是展品','需提前在官網預約，週一休館'],
+   tags:[{l:'門票 ₩10,000',c:'c'},{l:'需提前預約',c:'w'}]},
+  {t:'13:30',n:'漢南洞 쌀국수 越南米粉',q:'한남동 쌀국수',dur:'1 hr',
+   f:['漢南洞幾家口碑好的越南料理，米粉 Q 彈不軟爛','湯頭清爽，挑食者友善','比韓食清淡，適合換口味的一天'],
+   tags:[{l:'米粉 ₩11,000',c:'c'}]},
+  {t:'15:00',n:'漢南洞獨立設計師品牌',q:'한남동 독립디자이너 편집샵',dur:'2 hr',
+   f:['HAZE X ADZE、Andersson Bell 等品牌在此展店','風格偏中性街頭','許多小店不接受信用卡，備現金或行動支付'],
+   tags:[{l:'視個人',c:'c'}]},
+  {t:'18:00',n:'南山塔纜車 + 夕陽全景',q:'남산서울타워 케이블카',dur:'1.5 hr',
+   f:['搭纜車上山，18:00 後人潮稍退是最佳時機','可只搭纜車不買展望台票，山頂廣場看夜景也很值得','首爾 360 度全景，是旅途最壯觀的一幕'],
+   tags:[{l:'纜車 ₩15,000 / 展望台 ₩21,000',c:'c'}],note:'提醒：南山纜車排隊長，若不想等可步行上山（約 20–25 分）。'}
+ ]},
+
+{id:6,date:'06/04',wd:'THU',g:'seoul',title:'聖水洞工業風 + 漢江',area:'聖水洞 · 纛島漢江公園',hr:'—',
+ summary:'聖水洞是首爾最 cool 的工業風區域，pop-up 店密集；纛島漢江公園是傍晚發呆最好的地方。',
+ lazy:[
+  {t:'12:00',n:'大림창고 倉庫咖啡廳',q:'대림창고 성수동',dur:'1.5 hr',
+   f:['廢棄穀倉改建，超高挑高工業空間，光影本身就是藝術','燕麥奶選項友善，豆漿也可要求替換','週末人多，平日去更好拍照'],
+   tags:[{l:'咖啡 ₩7,500',c:'c'}]},
+  {t:'15:00',n:'纛島漢江公園 河邊發呆',q:'뚝섬한강공원',dur:'2 hr',
+   f:['帶一罐便利商店飲料，躺在草皮上吹風','六月漢江傍晚是首爾最日常也最美麗的景色','可租單車沿河道騎，或靜靜坐著什麼都不做'],
+   tags:[{l:'免費（飲料自備）',c:'c'}],note:'提醒：纛島有便利商店，現場買飲料；找有遮陰的樹下位置。'}
+ ],
+ active:[
+  {t:'10:00',n:'聖水洞工業街道拍攝',q:'성수동 공장거리 벽화',dur:'1.5 hr',
+   f:['舊工廠外牆、電線桿、街頭塗鴉，早晨人少最好拍','首爾目前最 cool 的區域','建議把整條主街走完再回頭，沿途都有驚喜'],
+   tags:[{l:'免費',c:'c'}]},
+  {t:'12:00',n:'聖水洞 삼겹살 烤肉午餐',q:'성수동 삼겹살 직화',dur:'1 hr',
+   f:['三元豬烤肉，口感紮實，挑食者最安全的選擇','選「직화」直火烤而非奶油鍋款式','午餐時段人少，比晚餐更輕鬆舒適'],
+   tags:[{l:'烤肉 ₩15,000',c:'c'},{l:'選직화，非크림',c:'w'}]},
+  {t:'14:00',n:'聖水洞選物店 + Pop-up 巡禮',q:'성수동 팝업스토어 편집샵',dur:'2 hr',
+   f:['首爾 pop-up 密度最高的區域，隨時有新店出現','台灣沒有的設計商品在這裏常能找到','韓國棉被也可在此區大型生活雜貨店找到'],
+   tags:[{l:'視個人購買',c:'c'}]},
+  {t:'17:00',n:'纛島漢江 黃金時刻',q:'뚝섬한강공원 일몰',dur:'1.5 hr',
+   f:['傍晚光線金黃，是影片的好素材','帶便利商店咖啡坐河邊，感受真實的首爾日常','自行車道沿河延伸，想騎就租一輛'],
+   tags:[{l:'免費',c:'c'}],note:'提醒：自行車租借在公園入口，₩3,000/小時，需 T-money 或信用卡。'}
+ ]},
+
+{id:7,date:'06/05',wd:'FRI',g:'seoul',title:'古著聖地 + 韓屋村',area:'東廟跳蚤市場 · 廣藏市場 · 益善洞',hr:'—',
+ summary:'東廟是首爾最大的二手古著市場，廣藏市場是最道地的市場小食，益善洞是最上鏡的韓屋村。',
+ lazy:[
+  {t:'11:00',n:'東廟跳蚤市場掃貨',q:'동묘벼룩시장 빈티지',dur:'2 hr',
+   f:['首爾最大二手古著市場，比弘大便宜 5–10 倍','中性風格外套、帽子、復古運動服都能找到','下午人多熱鬧，早上人少攤位剛好全擺齊'],
+   tags:[{l:'古著 ₩3,000–30,000',c:'c'},{l:'現金為主',c:'k'}]},
+  {t:'14:00',n:'廣藏市場 마약김밥',q:'광장시장 마약김밥',dur:'1 hr',
+   f:['小顆紮實的紫菜包飯佐芥末醬油，QQ 不軟爛','綠豆煎餅（빈대떡），炸到酥脆','站著吃完最道地'],
+   tags:[{l:'김밥 ₩3,000–5,000',c:'c'},{l:'現金',c:'k'}],note:'提醒：廣藏市場人多，注意隨身包包。'}
+ ],
+ active:[
+  {t:'10:00',n:'東廟市場開市搶先',q:'동묘앞역 벼룩시장',dur:'2.5 hr',
+   f:['越早去越好，攤販剛擺貨，好東西還沒被挑走','備現金 ₩50,000–100,000，可以殺價說「깎아주세요」','外套、古著 T 恤、帽子最多'],
+   tags:[{l:'古著 ₩3,000–50,000',c:'c'},{l:'現金',c:'k'}]},
+  {t:'13:00',n:'廣藏市場市場午餐',q:'광장시장 빈대떡 어묵',dur:'1 hr',
+   f:['마약김밥、빈대떡、어묵탕，口感扎實的選擇','어묵（魚板湯）清爽不含奶，暖胃又好喝','一個攤位吃幾樣就夠飽'],
+   tags:[{l:'午餐 ₩8,000–12,000',c:'c'},{l:'어묵不含奶',c:'t'}]},
+  {t:'15:00',n:'익선동 益善洞韓屋村',q:'익선동 한옥마을',dur:'2 hr',
+   f:['保存完整的韓屋聚落，比北村更生活化、自在','韓屋改建的咖啡廳和小店進駐，非常上鏡','傍晚燈光亮起，白天和夜晚都很美'],
+   tags:[{l:'免費散步',c:'c'}]},
+  {t:'18:00',n:'昌慶宮外圍散步',q:'창경궁 야간',dur:'45 min',
+   f:['傍晚光線打在宮牆上，是拍攝的好時機','宮殿外圍可免費遊覽，進宮內票價 ₩1,000','周邊安靜，邊散步邊整理一天心情'],
+   tags:[{l:'外圍免費 / 入宮 ₩1,000',c:'c'}]}
+ ]},
+
+{id:8,date:'06/06',wd:'SAT',g:'seoul',title:'首爾慢日 → 出發釜山',area:'弘大 → 首爾站 → 釜山',hr:'—',
+ summary:'今天是顯忠日（韓國國定假日），上午在首爾輕鬆逛，午後飛往釜山，開始旅程第二章。',
+ lazy:[
+  {t:'全天',n:'弘大隨意逛，整理首爾回憶',q:'홍대 카페 주말',dur:'隨意',
+   f:['6/6 顯忠日，商店正常營業，城市較安靜','整理行李，確認帶去釜山的物品','不需帶全部行李，只帶 3–4 天份量']},
+  {t:'傍晚',n:'飛機 首爾 → 釜山',q:'서울역 飛機 부산',dur:'1+2 hr',
+   f:['首爾出發，約1小時抵達釜山','大P人隨心所欲好黑皮','抵達後搭地鐵往海雲台'],
+   tags:[{l:'班機 ₩??,???',c:'c'}],note:'提醒：FUNWAVE Check-in 從 16:00 開始。'}
+ ],
+ active:[
+  {t:'09:00',n:'弘大週末 Pop-up 掃場',q:'홍대 팝업스토어 주말',dur:'2 hr',
+   f:['假日弘大有多個期間限定 pop-up','顯忠日人潮反而少，比一般週末輕鬆','Instagram #홍대팝업 查看本週活動']},
+  {t:'12:00',n:'整理行李 + 弘大午餐',q:'홍대 점심 맛집',dur:'2 hr',
+   f:['輕鬆吃一頓，然後回住所整理釜山行李','多餘行李寄放在 Hung Shu Ting','明天就是海雲台，開心出發']},
+  {t:'15:00',n:'首爾飛往釜山',q:'서울역 飛機 예매',dur:'1+2 hr',
+   f:['到達釜山大概是傍晚，可直接去海雲台看夕陽','可以稍作休息','抵達後搭地鐵 2 號線到 해운대역，步行到 FUNWAVE'],
+   tags:[{l:飛機 ₩??,???',c:'c'}]}
+ ]},
+
+{id:9,date:'06/07',wd:'SUN',g:'busan',title:'海雲台 + FUNWAVE 入住',area:'해운대 · 海雲台傳統市場',hr:'—',
+ summary:'歡迎來到釜山！今天是釜山第一天，FUNWAVE 入住，去海雲台感受大海。',
+ lazy:[
+  {t:'16:00',n:'FUNWAVE 入住',q:'FUNWAVE 게스트하우스 해운대',dur:'—',
+   f:['3F, 11-1, Jungdong 1-ro，距海雲台海灘步行約 15 分','入住後和釜山朋友聯絡，確認碰面時間','輕裝換好衣服，直接往海灘走'],
+   tags:[{l:'+82 10-4498-2705',c:'t'}]},
+  {t:'18:00',n:'海雲台海灘傍晚散步',q:'해운대해수욕장',dur:'1.5 hr',
+   f:['六月海灘人潮不多，沙灘寬闊舒適','傍晚光線打在沙灘上，是絕佳的影片素材','帶便利商店飲料坐沙灘上，感受「到了」的感覺'],
+   tags:[{l:'免費',c:'c'}],note:'提醒：海灘附近治安良好；不需要特別計畫，就是感受。'}
+ ],
+ active:[
+  {t:'入住後',n:'海雲台 黃金時刻拍攝',q:'해운대해수욕장 일몰',dur:'1.5 hr',
+   f:['傍晚光線是一天中最美的時刻，對著海的背影超上鏡','廣安大橋（광안대교）在遠方，可以一起入鏡','可和釜山朋友一起拍，或請路人幫忙'],
+   tags:[{l:'免費',c:'c'}]},
+  {t:'19:30',n:'해운대 전통시장 晚餐',q:'해운대전통시장 야식',dur:'1 hr',
+   f:['韓式炸雞、辣炒年糕、烤串，比海灘邊餐廳便宜許多','市場夜晚人氣旺，在地人也在這裏吃','炸年糕（튀김 떡볶이）比湯煮版本口感更紮實'],
+   tags:[{l:'晚餐 ₩10,000–15,000',c:'c'}]}
+ ]},
+
+{id:10,date:'06/08',wd:'MON',g:'busan',title:'甘川文化村 + 影島海岸',area:'甘川洞 · 자갈치 · 영도',hr:'—',
+ summary:'甘川是釜山最上鏡的彩色山丘，扎嘎其是最道地的海鮮市場，絕影海岸步道是最有電影感的地方。',
+ lazy:[
+  {t:'11:00',n:'甘川文化村',q:'감천문화마을',dur:'2.5 hr',
+   f:['釜山最知名的彩色山丘，迷宮小巷讓人驚嘆','越深入越少人、越美，不要只走主要路線','地圖 ₩2,000，沿途有小藝廊可進去看'],
+   tags:[{l:'地圖 ₩2,000',c:'c'}]},
+  {t:'14:30',n:'影島海邊咖啡館',q:'영도 카페 바다',dur:'2 hr',
+   f:['影島是連接釜山本島的小島，節奏非常慢','沿海的小咖啡館可直接看到港灣景色','適合安靜地坐著休息，不需要任何計畫'],
+   tags:[{l:'咖啡 ₩6,000',c:'c'}],note:'提醒：影島交通以公車為主；避免高峰時間（18:00 後跨橋容易塞車）。'}
+ ],
+ active:[
+  {t:'09:30',n:'甘川文化村 早去避人',q:'감천문화마을 지도',dur:'2.5 hr',
+   f:['9:30 光線好、人潮未至，拍攝最佳時機','地圖在入口購買，刻意迷路更有趣','每條小巷色彩不同，找到自己最喜歡的那條'],
+   tags:[{l:'地圖 ₩2,000',c:'c'}]},
+  {t:'12:30',n:'扎嘎其市場海鮮午餐',q:'자갈치시장 해산물',dur:'1.5 hr',
+   f:['釜山最大海鮮市場，現撈海鮮烤製，口感新鮮紮實','選貝類、烤魚，避免奶油鍋款式','市場 2 樓有料理區，可帶買的魚上去代為料理'],
+   tags:[{l:'海鮮 ₩15,000–25,000',c:'c'},{l:'市場多現金',c:'k'}]},
+  {t:'15:00',n:'絕影海岸步道 + 影島大橋',q:'절영해안산책로 영도대교',dur:'2 hr',
+   f:['沿海懸崖建造的步道，電影感十足','영도대교 是著名地標，附近有觀景平台','步道全程約 2.7 公里，走 1–1.5 小時最舒適'],
+   tags:[{l:'免費',c:'c'}]},
+  {t:'18:00',n:'광안리 廣安裏大橋夜景',q:'광안리 광안대교 야경',dur:'1.5 hr',
+   f:['광안대교 夜景是釜山最壯觀的景色之一','廣安裏海灘比海雲台安靜，夜晚很舒適','沙灘邊有餐廳和酒吧，找地方坐下喝一杯'],
+   tags:[{l:'免費觀景',c:'c'}]}
+ ]},
+
+{id:11,date:'06/09',wd:'TUE',g:'busan',title:'松亭秘境 + 機張螃蟹',area:'송정 · 기장 · 달맞이고개',hr:'—',
+ summary:'松亭是釜山最安靜的海灘，機張是最新鮮的螃蟹市場，月見嶺是俯瞰整個海雲台的最美角度。',
+ lazy:[
+  {t:'11:00',n:'松亭海灘 靜靜坐著',q:'송정해수욕장',dur:'3 hr',
+   f:['比海雲台小很多、遊客少很多，保留自然感','沙細水清，衝浪者練習的聲音是最好的背景音','帶飲料就好，什麼都不用做，就是坐著感受'],
+   tags:[{l:'免費',c:'c'}]},
+  {t:'15:00',n:'機張市場海鮮',q:'기장시장 게 해산물',dur:'2 hr',
+   f:['以新鮮螃蟹和海鮮著稱，選乾烤或清蒸','鮮甜不軟爛，是釜山最後一頓海鮮','市場邊小攤也有烤貝類'],
+   tags:[{l:'海鮮 ₩15,000–30,000',c:'c'},{l:'現金建議',c:'k'}],note:'提醒：機張距海雲台約 30 分車程，建議搭計程車或 Kakao T。'}
+ ],
+ active:[
+  {t:'09:00',n:'松亭海灘晨景',q:'송정해수욕장 아침',dur:'1.5 hr',
+   f:['早晨幾乎沒有人，只有衝浪者在練習，超有電影感','光線柔和，逆光站著就是完美鏡頭','松亭海邊公路也很上鏡，可拍行走片段'],
+   tags:[{l:'免費',c:'c'}]},
+  {t:'11:00',n:'機張市場午餐',q:'기장시장 찜게',dur:'1.5 hr',
+   f:['蒸螃蟹（찜게）或烤貝類，口感新鮮紮實','避免生食類（軟爛）；選烤/蒸/炸類','機張市場旁就是海邊，吃完可在旁邊走走'],
+   tags:[{l:'海鮮 ₩20,000–35,000',c:'c'},{l:'現金',c:'k'}]},
+  {t:'14:00',n:'달맞이고개 月見嶺展望台',q:'달맞이고개 전망대',dur:'1.5 hr',
+   f:['海雲台背後的山嶺，可俯瞰整個海雲台海灘全景','被評為釜山最美的海岸風景','山路兩側有咖啡館，走累了就進去休息'],
+   tags:[{l:'免費',c:'c'}]},
+  {t:'18:00',n:'海雲台 釜山告別晚餐',q:'해운대 야외 레스토랑',dur:'2 hr',
+   f:['在海雲台找一家戶外餐廳，和釜山朋友道別','點막걸리 米酒，比啤酒更有韓式氛圍','好好拍下這一頓，是釜山行程的句號'],
+   tags:[{l:'晚餐 ₩20,000–35,000',c:'c'}]}
+ ]},
+
+{id:12,date:'06/10',wd:'WED',g:'busan',title:'告別釜山，回首爾',area:'해운대 → 부산역 → 弘大',hr:'—',
+ summary:'退房前最後感受釜山的海風，然後搭 KTX 回首爾，開始旅程最後一章。',
+ lazy:[
+  {t:'早上',n:'海雲台最後早晨',q:'해운대해수욕장',dur:'1 hr',
+   f:['退房前去海灘感受最後一次海風','11:00 前退房，不用趕','讓思緒和釜山的記憶一起沉澱']},
+  {t:'11:00',n:'退房 → KTX 回首爾',q:'부산역 KTX 서울',dur:'2.5 hr',
+   f:['釜山站 → 首爾站，2.5 小時，下午抵達','回首爾後前往弘大附近住宿（Hung Shu Ting）','安頓好後可在弘大隨意逛'],
+   tags:[{l:'KTX ₩60,000–78,000',c:'c'}]}
+ ],
+ active:[
+  {t:'09:00',n:'海雲台周邊早午餐',q:'해운대 아침 식당',dur:'1 hr',
+   f:['退房前最後一頓釜山早午餐，找在地小食堂','吃飽喝足，整理好行李，準時退房'],
+   tags:[{l:'早午餐 ₩8,000–12,000',c:'c'}]},
+  {t:'11:00',n:'退房 → KTX 返首爾',q:'부산역 KTX',dur:'2.5 hr',
+   f:['搭地鐵到釜山站，確認好 KTX 座位和時間','車上可以整理照片、睡一覺','抵達首爾站後直奔弘大安頓'],
+   tags:[{l:'KTX ₩60,000–78,000',c:'c'}]},
+  {t:'下午',n:'弘大入住 + 首爾重啟',q:'홍대 카페 저녁',dur:'—',
+   f:['回到 Hung Shu Ting 安頓','安頓好後可在弘大隨意逛','若還有力氣，可去망원한강공원 漢江邊走走']}
+ ]},
+
+{id:13,date:'06/11',wd:'THU',g:'hongdae',title:'昌德宮 + 仁寺洞',area:'창덕궁 · 북촌 · 인사동',hr:'—',
+ summary:'昌德宮是保存最完整的朝鮮王朝宮殿，北村是最上鏡的韓屋街道，仁寺洞是最好買的工藝品集散地。',
+ lazy:[
+  {t:'11:00',n:'昌德宮散步',q:'창덕궁 비원',dur:'2 hr',
+   f:['保存最完整的朝鮮王朝宮殿，後花園秘苑需預約','六月初荷花有機會看到初開','宮殿和庭院光線傍晚最美'],
+   tags:[{l:'宮殿 ₩3,000 / 秘苑 ₩5,000',c:'c'},{l:'秘苑需在 ticket.cha.go.kr 預約',c:'w'}]},
+  {t:'14:00',n:'仁寺洞 쌈지길 + 小物',q:'인사동 쌈지길 공방',dur:'2 hr',
+   f:['쌈지길 是螺旋狀的文創商業空間，手工藝品聚集','旅途尾聲採購伴手禮的好地方','仁寺洞街上也有多個畫廊可隨意進去'],
+   tags:[{l:'視購買',c:'c'}]}
+ ],
+ active:[
+  {t:'09:00',n:'昌德宮開門入場',q:'창덕궁 개장 외국인',dur:'3 hr',
+   f:['早上 9 點開放，趁遊客少的時候拍宮殿建築','秘苑導覽需提前預約，各時段人數有限','宮殿和秘苑可以花半天慢慢走'],
+   tags:[{l:'宮殿 ₩3,000 + 秘苑 ₩5,000',c:'c'}]},
+  {t:'12:30',n:'仁寺洞 쌈밥 包飯定食',q:'인사동 쌈밥 정식',dur:'1 hr',
+   f:['用各種葉菜包著烤肉和醬料，爽脆不軟爛','每個元素可自行控制，是挑食者最自由的選擇','仁寺洞周邊餐廳星評 4.0 以上通常不踩雷'],
+   tags:[{l:'쌈밥 ₩13,000–16,000',c:'c'}]},
+  {t:'14:30',n:'北村韓屋村下午輕鬆逛',q:'북촌한옥마을 골목',dur:'1.5 hr',
+   f:['韓屋屋脊和小巷，下午光線進入巷子裏最美','週間人少很多，比週末輕鬆十倍','這裏有居民居住，請保持安靜'],
+   tags:[{l:'免費',c:'c'},{l:'居民區請安靜',c:'w'}]},
+  {t:'17:00',n:'쌈지길 + 仁寺洞工藝品',q:'쌈지길 인사동 기념품',dur:'1.5 hr',
+   f:['伴手禮採購好去處，陶器、手工飾品、傳統小物','쌈지길 的店家多為獨立手作','旅途進入尾聲，把喜歡的東西帶回家'],
+   tags:[{l:'視購買',c:'c'}]}
+ ]},
+
+{id:14,date:'06/12',wd:'FRI',g:'hongdae',title:'最後補貨 · 買韓國棉被 · 漢江告別',area:'弘大 · 홈플러스 · 망원한강',hr:'—',
+ summary:'最後一個完整的首爾日。補齊沒買到的東西，把韓國棉被帶回家，漢江邊看最後一個日落。',
+ lazy:[
+  {t:'全天',n:'最後採購 + 回味弘大',q:'홍대 올리브영 마지막',dur:'隨意',
+   f:['把沒買到的東西補齊，Olive Young 美妝最後衝一波','去最喜歡的那家咖啡廳再坐一次','行李記得量重量，不要超過航班限重'],
+   tags:[{l:'注意行李重量限制',c:'w'}]},
+  {t:'傍晚',n:'망원한강 漢江告別日落',q:'망원한강공원 일몰',dur:'2 hr',
+   f:['帶一罐便利商店飲料，坐在漢江看最後的首爾日落','這一幕放進影片片尾，是整個旅程最完美的句號','六月日落約 19:50，黃金時刻非常長'],
+   tags:[{l:'免費',c:'c'}],note:'提醒：明天 IT663 20:35 出發，建議 18:00 前到金浦機場。'}
+ ],
+ active:[
+  {t:'10:00',n:'弘大 Olive Young 最終補貨',q:'홍대 올리브영',dur:'1.5 hr',
+   f:['韓系護膚、美妝最後採購','防曬、護唇膏、香水類最受歡迎','確認好行李限重再決定買多少'],
+   tags:[{l:'視購買',c:'c'}]},
+  {t:'12:00',n:'購買韓國棉被',q:'강서구 홈플러스 이불',dur:'1.5 hr',
+   f:['韓國棉被（이불）輕薄蓬鬆、品質好且合理','HomePlus 或 E-Mart 大型超市選擇最豐富','壓縮袋裝箱可省不少空間，記得帶壓縮袋'],
+   tags:[{l:'棉被 ₩30,000–80,000',c:'c'}],note:'提醒：棉被體積大，確認行李箱還放得下；若超重可用韓國國際快遞服務寄回台灣。'},
+  {t:'13:30',n:'合井 最後一頓韓食',q:'합정 점심 맛집',dur:'1 hr',
+   f:['弘大合井一帶定食小食堂都不踩雷','好好吃一頓紮實的韓式午餐，記住這個味道','拍一張食物的照片，放進影片裏'],
+   tags:[{l:'定食 ₩12,000–16,000',c:'c'}]},
+  {t:'15:00',n:'最喜歡的咖啡廳最後一坐',q:'홍대 카페 마지막',dur:'2 hr',
+   f:['去這趟旅途中最喜歡的那家咖啡館','15 日的首爾和釜山，讓思緒慢慢沉澱','不用趕，就是靜靜坐著，暫別這座城市'],
+   tags:[{l:'咖啡 ₩6,000',c:'c'}]},
+  {t:'18:30',n:'망원한강 漢江告別日落',q:'망원한강공원 일몰',dur:'1.5 hr',
+   f:['首爾最後的傍晚，帶一罐飲料坐在漢江邊','這是影片的最後一個鏡頭','日落後回去，整理好行李準備明天回家'],
+   tags:[{l:'免費',c:'c'}]}
+ ]},
+
+{id:15,date:'06/13',wd:'SAT',g:'hongdae',title:'再見，首爾 — 帶著故事回家',area:'弘大 → 金浦機場 → 高雄',hr:'—',
+ summary:'最後一天。整理行李，帶著 15 天的回憶和一機的影片素材飛回台灣。',
+ lazy:[
+  {t:'早上',n:'整理行李 + 退房',q:'홍대 역 김포공항 지하철',dur:'—',
+   f:['確認護照、機票（IT663）、行李重量','弘大→金浦機場搭地鐵 9 號線直達，約 20 分','金浦機場建議提前 2 小時到達'],
+   tags:[{l:'金浦機場提前 2 小時到',c:'w'}]},
+  {t:'20:35',n:'IT663 出發 → 22:40 高雄抵達',q:'김포국제공항 출국',dur:'—',
+   f:['帶著 15 日的回憶回家','親愛的，這趟旅程是妳的','接下來到了妳說故事的時候']}
+ ],
+ active:[]}
+];
+
+const TASKS = [
+ {id:'tk1',scroll:'📜',title:'在弘大找到一件「命中注定」ㄉ小東西',day:'05/31',sortD:2,
+  desc:'帶著現金去弘大古著街，在所有的攤位裏找到「那一件」。可能是帽子、舊衣，或讓妳停下腳步的小東西。不要想太多，跟著感覺走。',
+  tip:'古著店多在中午才開；備現金 ₩30,000–50,000，多問多比較。找到後就帶著它走完今天剩下的行程。',tipIco:'👗'},
+ {id:'tk2',scroll:'📜',title:'在東廟市場找到一件 ₩10,000 以下的寶物',day:'06/05',sortD:7,
+  desc:'東廟跳蚤市場是古著界的聖地，早到攤位剛擺好。目標是找到一件 ₩10,000 以下的東西，然後和攤主聊個天。',
+  tip:'說「깎아주세요（便宜一點）」；準備現金；不管買到什麼，重點是說話的那一刻。',tipIco:'🛍'},
+ {id:'tk3',scroll:'📜',title:'搭飛機出發釜山，拍下窗外第一個漢江',day:'06/06',sortD:8,
+  desc:'飛機從首爾站出發，車程中會跨越漢江。有機會的話，拍下窗外穿越城市的畫面。這是旅程進入第二章的儀式感。',
+  tip:'Bon voyage!',tipIco:'✈️'},
+ {id:'tk4',scroll:'📜',title:'在甘川文化村迷路 30 分鐘',day:'06/08',sortD:10,
+  desc:'拿到地圖後把它收起來，在甘川的彩色小巷裏靠著感覺走，不看地圖不開導航，讓自己真正地迷路 30 分鐘。',
+  tip:'甘川雖然迷宮感強，但範圍不大，迷路了往下走就能回到主路。',tipIco:'🎨'},
+ {id:'tk5',scroll:'📜',title:'在釜山看一次完整的海上日落',day:'06/07–06/09',sortD:11,
+  desc:'在釜山停留的某一天傍晚，找到能看到海平線的地方，欣賞整個夕陽西下。',
+  tip:'釜山 6 月日落約 19:40–19:50，提前 30 分到達。天空顏色從橙紅到深紫的變化比日落本身更美。',tipIco:'🌅'},
+ {id:'tk6',scroll:'📜',title:'坐在漢江邊什麼都不做 1 小時',day:'任意傍晚',sortD:99,
+  desc:'找到漢江公園一個不擁擠的位置，帶一罐飲料，什麼都不做，就是看著漢江流過。',
+  tip:'漢江的夕陽值得用眼睛看，適時紀錄，適時回顧。',tipIco:'🌊'},
+ {id:'tk7',scroll:'📜',title:'和陌生人說一句真正需要勇氣的韓語',day:'任意',sortD:98,
+  desc:'不是「감사합니다」那種，是主動說一句真正需要勇氣的韓語。請路邊阿姨推薦特餐、問攤販有沒有其他顏色，都好。',
+  tip:'韓國人對觀光客很友善，比手畫腳也能溝通。準備好 Papago，必要時拿手機給對方看。',tipIco:'💬'},
+ {id:'tk8',scroll:'📜',title:'買韓國棉被帶回家',day:'06/12',sortD:14,
+  desc:'韓國棉被（이불）輕薄蓬鬆，品質好且價格合理。今天就是棉被日，去 HomePlus 或 E-Mart 把棉被選好帶回去。',
+  tip:'棉被體積大，建議帶壓縮袋；若超重考慮韓國寄台灣快遞服務（約 ₩30,000–50,000）。',tipIco:'🛏'},
+ {id:'tk9',scroll:'📜',title:'在便利商店挑一款從未嘗試的韓國零食',day:'任意',sortD:97,
+  desc:'走進 GS25 或 CU，請挑選一樣從沒看過的包裝，結帳、打開、吃掉它。好不好吃都是旅行的一部分。',
+  tip:'可以問店員「맛있어요? (好吃嗎?)」讓互動更有趣。拍一張零食的照片放進影片。',tipIco:'🍡'},
+ {id:'tk10',scroll:'📜',title:'在旅途中找到一個「只屬於自己」的秘密角落',day:'任意',sortD:96,
+  desc:'不是景點，不是網紅打卡地。是某條轉進去的小巷、某個公園角落、某個沒有其他旅客的地方。在那裏靜靜待 10 分鐘。',
+  tip:'讓此時此刻只屬於妳，記在心裏。',tipIco:'🌿'},
+];
+
+const BADGES = [
+ {id:'b1',ico:'👗',nm:'古著獵人',need:1,tasks:['tk1']},
+ {id:'b2',ico:'🛍',nm:'市場老手',need:1,tasks:['tk2']},
+ {id:'b3',ico:'🚄',nm:'飛行旅人',need:1,tasks:['tk3']},
+ {id:'b4',ico:'🌅',nm:'追日者',need:1,tasks:['tk5']},
+ {id:'b5',ico:'🏅',nm:'傳說旅者',need:10,tasks:['tk1','tk2','tk3','tk4','tk5','tk6','tk7','tk8','tk9','tk10']},
+];
+
+const PRAISE = ['妳好棒！！','Nice ✨','超厲害！','完美！','YES！','好開心！','做到了！','是誰這麼棒呀！'];
+
+// ════════════════════════════════════════════
+// STATE + REAL-TIME SYNC via Anthropic Storage API
+// ════════════════════════════════════════════
+const STORE_KEY = 'korea_2026_state';
+const SHARED = true;
+let state = {tasksDone:{}, badgesUnlocked:{}};
+let syncing = false;
+
+async function loadState(){
+  try{
+    const r = await window.storage.get(STORE_KEY, SHARED);
+    if(r && r.value) state = JSON.parse(r.value);
+  }catch(e){ /* first run */ }
+}
+
+async function saveState(){
+  if(syncing) return;
+  syncing = true;
+  try{
+    await window.storage.set(STORE_KEY, JSON.stringify(state), SHARED);
+    setSyncStatus('已同步', true);
+  }catch(e){
+    setSyncStatus('離線', false);
+  }
+  syncing = false;
+}
+
+// Poll for remote changes every 8s
+async function pollSync(){
+  try{
+    const r = await window.storage.get(STORE_KEY, SHARED);
+    if(!r || !r.value) return;
+    const remote = JSON.parse(r.value);
+    let changed = false;
+    Object.keys(remote.tasksDone||{}).forEach(k=>{
+      if(!state.tasksDone[k]){state.tasksDone[k]=remote.tasksDone[k];changed=true;}
+    });
+    Object.keys(remote.badgesUnlocked||{}).forEach(k=>{
+      if(!state.badgesUnlocked[k]){state.badgesUnlocked[k]=remote.badgesUnlocked[k];changed=true;}
+    });
+    if(changed){ renderTasks(); renderBadges(); showToast('有新進度同步進來！'); }
+    setSyncStatus('已同步', true);
+  }catch(e){ setSyncStatus('離線', false); }
+}
+
+function setSyncStatus(txt, ok){
+  document.getElementById('syncTxt').textContent = txt;
+  document.getElementById('syncDot').style.background = ok ? '#7fba7f' : '#c07070';
+}
+
+function showSyncInfo(){ showToast('korea2026 · 共享存儲已開啟，多裝置即時同步'); }
+function showToast(msg){
+  const t = document.getElementById('syncToast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+// ════════════════════════════════════════════
+// PROGRESS
+// ════════════════════════════════════════════
+function updateProgress(){
+  const now = new Date();
+  const start = new Date('2026-05-30T00:00:00+09:00');
+  let day = Math.floor((now - start) / 86400000) + 1;
+  day = Math.max(0, Math.min(15, day));
+  const pct = (day/15)*100;
+  document.getElementById('progFill').style.width = pct+'%';
+  document.getElementById('progFrac').textContent = (day>0?day:'—')+'/15';
+  document.getElementById('progLabel').textContent = day>=1&&day<=15?`第 ${day} 天`:(day<1?'旅程即將開始':'旅程已結束');
+  const dots = document.getElementById('progDots');
+  dots.innerHTML='';
+  for(let i=1;i<=15;i++){
+    const d=document.createElement('div');
+    d.className='prog-dot'+(i<day?' done':i===day?' today':'');
+    dots.appendChild(d);
+  }
+}
+
+// ════════════════════════════════════════════
+// RENDER DAYS
+// ════════════════════════════════════════════
+function navUrl(q){ return `https://map.naver.com/v5/search/${encodeURIComponent(q)}`; }
+
+function renderStops(arr, mode, visible){
+  const cls = visible ? 'stops' : 'stops h';
+  const inner = arr.map((s,i)=>{
+    const last = i===arr.length-1;
+    const tags = (s.tags||[]).map(t=>`<span class="stag ${t.c}">${t.l}</span>`).join('');
+    const note = s.note ? `<div class="snote">${s.note}</div>` : '';
+    return `<div class="stop">
+      <div class="stop-l">
+        <span class="stop-t">${s.t}</span>
+        <div class="stop-dot"></div>
+        ${!last?'<div class="stop-line"></div>':''}
+      </div>
+      <div class="stop-r"><div class="sc">
+        <div class="sc-hd">
+          <a class="nav-ic" href="${navUrl(s.q)}" target="_blank" title="Naver Map">🗺</a>
+          <span class="sname">${s.n}</span>
+          <span class="sdur">${s.dur||''}</span>
+        </div>
+        <div class="sfeats">${s.f.map(f=>`<p class="sf">${f}</p>`).join('')}</div>
+        ${tags?`<div class="stags">${tags}</div>`:''}
+        ${note}
+      </div></div>
+    </div>`;
+  }).join('');
+  return `<div class="${cls}" data-m="${mode}">${inner}</div>`;
+}
+
+function renderDays(){
+  const list = document.getElementById('dayList');
+  list.innerHTML='';
+  DAYS.forEach(d=>{
+    const nc = d.g==='busan'?'dc-num busan':d.id===15?'dc-num gold':'dc-num';
+    const hasActive = d.active && d.active.length>0;
+    const el = document.createElement('div');
+    el.className='dc'; el.dataset.g=d.g;
+    el.innerHTML=`
+      <div class="dc-head" onclick="toggleDay(this)">
+        <div class="${nc}"><span class="d">DAY</span><span class="n">${d.id}</span></div>
+        <div class="dc-info">
+          <div class="dc-date">${d.date} ${d.wd}${d.hr?' · '+d.hr:''}</div>
+          <div class="dc-title">${d.title}</div>
+          <div class="dc-area">${d.area}</div>
+        </div>
+        <span class="dc-arr">▾</span>
+      </div>
+      <div class="dc-body">
+        ${d.summary?`<div class="day-summary">${d.summary}</div>`:''}
+        ${hasActive?`<div class="mode-toggle"><button class="mb on" onclick="switchMode(this,'lazy')">慵懶</button><button class="mb" onclick="switchMode(this,'active')">活力</button></div>`:''}
+        ${renderStops(d.lazy,'lazy',true)}
+        ${hasActive?renderStops(d.active,'active',false):''}
+      </div>`;
+    list.appendChild(el);
+  });
+}
+
+function toggleDay(hd){
+  const bd=hd.nextElementSibling, arr=hd.querySelector('.dc-arr');
+  const open=bd.classList.contains('open');
+  bd.classList.toggle('open',!open);
+  arr.classList.toggle('open',!open);
+}
+
+function switchMode(btn,mode){
+  const bd=btn.closest('.dc-body');
+  bd.querySelectorAll('.mb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  bd.querySelectorAll('.stops').forEach(s=>s.classList.toggle('h',s.dataset.m!==mode));
+}
+
+function filterDays(g,chip){
+  document.querySelectorAll('.fc').forEach(c=>c.classList.remove('on'));
+  chip.classList.add('on');
+  document.querySelectorAll('.dc').forEach(c=>c.style.display=(g==='all'||c.dataset.g===g)?'':'none');
+}
+
+// ════════════════════════════════════════════
+// TASKS
+// ════════════════════════════════════════════
+function renderTasks(){
+  const list=document.getElementById('taskList');
+  if(!list)return;
+  list.innerHTML='';
+  [...TASKS].sort((a,b)=>a.sortD-b.sortD).forEach(t=>{
+    const done=!!state.tasksDone[t.id];
+    const el=document.createElement('div');
+    el.className='tk'+(done?' tk-done':'');
+    el.dataset.id=t.id;
+    const btnInner = done
+      ? `<span class="tk-chk">✓</span><span>已完成（點擊取消）</span>`
+      : `<span class="tk-chk"></span><span>標記完成，領取徽章</span>`;
+    el.innerHTML=`
+      <div class="tk-hd" onclick="toggleTask(this)">
+        <span class="tk-scroll">${t.scroll}</span>
+        <div class="tk-meta">
+          <div class="tk-title">${t.title}</div>
+          <div class="tk-day">${t.day}</div>
+        </div>
+        <span class="tk-arr">▾</span>
+      </div>
+      <div class="tk-bd">
+        <div class="tk-desc">${t.desc}</div>
+        <div class="tk-tip"><span class="tk-tip-ico">${t.tipIco}</span><span>✔︎ Tips：${t.tip}</span></div>
+        <button class="tk-cbtn${done?' done':''}" onclick="completeTask(event,'${t.id}',this)">${btnInner}</button>
+        ${done&&state.tasksDone[t.id].praise?`<div class="praise">${state.tasksDone[t.id].praise}</div>`:''}
+      </div>`;
+    list.appendChild(el);
+  });
+}
+
+function toggleTask(hd){
+  const bd=hd.nextElementSibling, arr=hd.querySelector('.tk-arr');
+  const open=bd.classList.contains('open');
+  bd.classList.toggle('open',!open);
+  arr.classList.toggle('open',!open);
+  if(!open) spawnSparkles(hd,10);
+}
+
+function completeTask(e,id,btn){
+  e.stopPropagation();
+  if(state.tasksDone[id]){
+    // un-complete
+    delete state.tasksDone[id];
+    saveState();
+    btn.classList.remove('done');
+    btn.innerHTML=`<span class="tk-chk"></span><span>標記完成，領取徽章</span>`;
+    btn.closest('.tk').classList.remove('tk-done');
+    const p=btn.nextElementSibling;
+    if(p&&p.classList.contains('praise')) p.remove();
+    renderBadges();
+    return;
+  }
+  const praise=PRAISE[Math.floor(Math.random()*PRAISE.length)];
+  state.tasksDone[id]={date:new Date().toISOString(),praise};
+  saveState();
+  btn.classList.add('done');
+  btn.innerHTML=`<span class="tk-chk">✓</span><span>已完成</span>`;
+  btn.closest('.tk').classList.add('tk-done');
+  const p=document.createElement('div');
+  p.className='praise'; p.textContent=praise;
+  btn.after(p);
+  bigSparkles(btn);
+  checkBadges();
+}
+
+// ════════════════════════════════════════════
+// BADGES
+// ════════════════════════════════════════════
+function checkBadge(b,done){
+  if(b.id==='b5') return done.length>=b.need;
+  return b.tasks.every(t=>done.includes(t));
+}
+
+function checkBadges(){
+  const done=Object.keys(state.tasksDone);
+  BADGES.forEach(b=>{
+    if(state.badgesUnlocked[b.id])return;
+    if(checkBadge(b,done)){
+      state.badgesUnlocked[b.id]=new Date().toISOString();
+      saveState();
+      renderBadges();
+      setTimeout(()=>popBadge(b.id),200);
+    }
+  });
+  renderBadges();
+}
+
+function renderBadges(){
+  const grid=document.getElementById('bdgGrid');
+  if(!grid)return;
+  const done=Object.keys(state.tasksDone);
+  grid.innerHTML='';
+  BADGES.forEach(b=>{
+    const unlocked=checkBadge(b,done)||!!state.badgesUnlocked[b.id];
+    const el=document.createElement('div');
+    el.className='badge-itm'+(unlocked?' unlocked':' locked');
+    el.id='bdg-'+b.id;
+    const dt=state.badgesUnlocked[b.id]?new Date(state.badgesUnlocked[b.id]).toLocaleDateString('zh-TW',{month:'numeric',day:'numeric'}):'';
+    el.innerHTML=`<span class="badge-ico">${b.ico}</span><span class="badge-nm">${b.nm}</span>${dt?`<span class="badge-dt">${dt}</span>`:''}`;
+    grid.appendChild(el);
+  });
+  const total=BADGES.length;
+  const unl=BADGES.filter(b=>checkBadge(b,done)||!!state.badgesUnlocked[b.id]).length;
+  document.getElementById('bdgCount').textContent=`${unl} / ${total} 解鎖`;
+  const next=BADGES.find(b=>!(checkBadge(b,done)||!!state.badgesUnlocked[b.id]));
+  if(next){
+    const prog=next.id==='b5'?done.length:next.tasks.filter(t=>done.includes(t)).length;
+    const tot=next.id==='b5'?next.need:next.tasks.length;
+    document.getElementById('nbName').textContent=`下一個：${next.ico} ${next.nm}`;
+    document.getElementById('nbProg').textContent=`${prog}/${tot}`;
+    document.getElementById('nbFill').style.width=Math.min(100,(prog/tot)*100)+'%';
+  } else {
+    document.getElementById('nbName').textContent='🎉 全部徽章已解鎖！';
+    document.getElementById('nbProg').textContent='';
+    document.getElementById('nbFill').style.width='100%';
+  }
+}
+
+function popBadge(bid){
+  const el=document.getElementById('bdg-'+bid);
+  if(!el)return;
+  el.classList.add('badge-pop','unlocked');
+  el.classList.remove('locked');
+  el.addEventListener('animationend',()=>el.classList.remove('badge-pop'),{once:true});
+  bigSparkles(el);
+}
+
+// ════════════════════════════════════════════
+// SPARKLES
+// ════════════════════════════════════════════
+const COLORS=['#b8955a','#5b82a0','#7a9478','#b87878','#fff'];
+function spawnSparkles(el,n){
+  for(let i=0;i<n;i++){
+    const d=document.createElement('div');
+    d.className='spk';
+    const dx=(Math.random()-.5)*60+'px', dy=-(Math.random()*40+10)+'px';
+    d.style.cssText=`left:${Math.random()*90}%;top:${Math.random()*80}%;width:4px;height:4px;background:${COLORS[i%COLORS.length]};--dx:${dx};--dy:${dy};animation-delay:${Math.random()*.2}s`;
+    el.style.position='relative'; el.appendChild(d);
+    setTimeout(()=>d.remove(),900);
+  }
+}
+function bigSparkles(el){
+  for(let i=0;i<24;i++){
+    const d=document.createElement('div');
+    d.className='spk';
+    const sz=3+Math.random()*5;
+    const dx=(Math.random()-.5)*110+'px', dy=-(Math.random()*65+10)+'px';
+    d.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;background:${COLORS[i%COLORS.length]};--dx:${dx};--dy:${dy};animation-delay:${Math.random()*.3}s`;
+    el.style.position='relative'; el.appendChild(d);
+    setTimeout(()=>d.remove(),1000);
+  }
+}
+
+// ════════════════════════════════════════════
+// TABS
+// ════════════════════════════════════════════
+function switchTab(name,btn){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pane-'+name).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelector('.tab-content').scrollTop=0;
+}
+
+// ════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════
+document.getElementById('startBtn').addEventListener('click',()=>{
+  document.getElementById('cover').classList.add('hidden');
+});
+
+// Cover floating stars
+(function(){
+  const c=document.getElementById('cvStars');
+  const cols=['#b8955a','#8a7a9a','#7a9478','#b87878','#5b82a0','#c4a882'];
+  for(let i=0;i<18;i++){
+    const d=document.createElement('div');
+    const sz=2+Math.random()*4;
+    d.className='cv-star';
+    d.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${60+Math.random()*40}%;background:${cols[i%cols.length]};animation-duration:${3+Math.random()*4}s;animation-delay:${Math.random()*4}s`;
+    c.appendChild(d);
+  }
+})();
+
+async function init(){
+  await loadState();
+  renderDays();
+  renderTasks();
+  renderBadges();
+  updateProgress();
+  setInterval(updateProgress, 60000);
+  setInterval(pollSync, 8000);
+}
+
+init();
+</script>
+</body>
+</html>
